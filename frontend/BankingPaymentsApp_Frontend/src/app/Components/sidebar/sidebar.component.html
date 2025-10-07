@@ -30,7 +30,7 @@
         <i class="bi bi-person me-2"></i> Profile
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN' && kycVierified">
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified">
       <a routerLink="/beneficiary" class="nav-link d-flex align-items-center">
         <i class="bi bi-wallet2 me-2"></i> Beneficiary
       </a>
@@ -55,7 +55,7 @@
         <i class="bi bi-arrow-left-right me-2"></i> Transactions
       </a>
     </li>
-    <li *ngIf="role != 'ADMIN' && kycVierified">
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified">
       <a routerLink="/employee" class="nav-link d-flex align-items-center">
         <i class="bi bi-people me-2"></i> Employees
       </a>
