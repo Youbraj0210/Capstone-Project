@@ -84,7 +84,7 @@ export class BeneficiariesComponent implements OnInit {
   }
 
   startEdit(b: any) {
-    this.editingBeneficiary = { ...b }; // copy to avoid overwriting original
+    this.editingBeneficiary = { ...b }; 
   }
 
   cancelEdit() {

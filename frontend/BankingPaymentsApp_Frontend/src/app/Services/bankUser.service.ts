@@ -14,14 +14,9 @@ export class BankRegisterService {
 
   constructor(private http: HttpClient) { }
 
-  // Get all bank users
   getAllBankUsers(queryParams: string): Observable<BankUser[]> {
     return this.http.get<BankUser[]>(this.baseUrl + `?${queryParams}`);
   }
-  // Get paginated bank users
-  // getAllBankUsers(pageNumber: number = 1, pageSize: number = 10): Observable<any> {
-  //   return this.http.get<any>(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-  // }
 
 
   // Get one bank user by id
@@ -43,7 +38,6 @@ export class BankRegisterService {
     return this.http.put(`${this.baseUrl}/reject/${reject.id}`, { reject }, { responseType: 'text' });
   }
 
-  // Optional: register new bank user
   registerBankUser(user: RegisterBankUserDTO): Observable<any> {
     return this.http.post<any>(this.baseUrl, user);
   }

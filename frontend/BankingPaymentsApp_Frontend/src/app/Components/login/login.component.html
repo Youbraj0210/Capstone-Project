@@ -1,10 +1,8 @@
 <div class="login-page d-flex vh-100">
-  <!-- Left side: SVG / illustration -->
   <div class="login-illustration flex-grow-1 d-none d-lg-flex justify-content-center align-items-center bg-light">
      <img src="assets/images/login.svg" alt="Login Illustration" class="img-fluid login-img">
   </div>
 
-  <!-- Right side: Login Form -->
   <div class="login-form-container d-flex justify-content-center align-items-center flex-grow-1">
     <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)" class="login-form p-4 rounded shadow-sm bg-white">
       <h2 class="login-title text-center mb-4">PayPro Login</h2>

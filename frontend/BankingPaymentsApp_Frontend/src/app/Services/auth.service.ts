@@ -38,7 +38,6 @@ export class AuthService {
 
       const payloadBase64 = response.token.split('.')[1];
 
-      // JWT uses base64url, so replace chars before decoding
       const base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
       const decodedPayload = JSON.parse(atob(base64));
       this.roleSubject.next(decodedPayload['Role']);

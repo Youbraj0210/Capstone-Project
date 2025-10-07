@@ -4,7 +4,6 @@ namespace BankingPaymentsApp_API.Services
 {
     public interface IUserService
     {
-        //Task<IEnumerable<User>> GetAll();
         Task<IEnumerable<User>> GetAll(
             string? fullName,
             string? userName,

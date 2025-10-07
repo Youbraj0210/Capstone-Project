@@ -16,7 +16,6 @@ export class EmployeeService {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 
-    // expect JSON now, not text
     return this.http.post<any>(`${this.baseUrl}/upload`, formData);
   }
 
@@ -36,19 +35,10 @@ export class EmployeeService {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
-
-  // uploadCSV(file: File): Observable<any> {
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   return this.http.post(`${this.baseUrl}/upload`, formData, { responseType: 'text' });
-  // }
-
   uploadUpdateCSVByClient(file: File, clientId: number): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post(`${this.baseUrl}/update-employee/${clientId}`, formData, { responseType: 'text' });
   }
-
-
 
 }

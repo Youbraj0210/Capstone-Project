@@ -84,36 +84,29 @@ namespace BankingPaymentsApp_API.Data
 
             modelBuilder.Entity<SalaryDisbursement>()
                 .HasOne(s => s.ClientUser)
-                .WithMany() // you don’t need a collection in ClientUser unless required
+                .WithMany() 
                 .HasForeignKey(s => s.ClientId)
-                .OnDelete(DeleteBehavior.Restrict); // ❌ never delete a ClientUser if disbursement is deleted
+                .OnDelete(DeleteBehavior.Restrict); 
 
-            // 2. SalaryDisbursement -> DisbursementDetails
+
             modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.SalaryDisbursement)
                 .WithMany(s => s.DisbursementDetails)
                 .HasForeignKey(d => d.SalaryDisbursementId)
-                .OnDelete(DeleteBehavior.Restrict); // ✅ only cascade allowed (delete details if batch deleted)
+                .OnDelete(DeleteBehavior.Restrict); 
 
-            // 3. DisbursementDetails -> Employee
             modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.Employee)
-                .WithMany() // optional to expose navigation in Employee
+                .WithMany() 
                 .HasForeignKey(d => d.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict); // ❌ don’t cascade delete Employee
+                .OnDelete(DeleteBehavior.Restrict); 
 
-            // 4. DisbursementDetails -> Transaction
             modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(d => d.Transaction)
-                .WithOne() // no collection in Transaction needed
+                .WithOne() 
                 .HasForeignKey<SalaryDisbursementDetails>(d => d.TransactionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //modelBuilder.Entity<Payment>()
-            //    .HasOne(p => p.PayeeAccount)
-            //    .WithMany()
-            //    .HasForeignKey(p => p.PayeeAccountId)
-            //    .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<SalaryDisbursementDetails>()
                 .HasOne(s => s.Employee)
                 .WithMany(e => e.SalaryDisbursementDetails)

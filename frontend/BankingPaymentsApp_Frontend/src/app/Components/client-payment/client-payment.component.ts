@@ -21,7 +21,7 @@ export class ClientPaymentComponent implements OnInit {
   // Filters
   filterAmount: number | null = null;
   filterPayee: string = '';
-  filterDate: string = ''; // YYYY-MM-DD
+  filterDate: string = ''; 
 
   constructor(
     private route: ActivatedRoute,

@@ -123,7 +123,6 @@ namespace BankingPaymentsApp_API.Services
                 }
             }
 
-            // Validate DTOs
             foreach (var dto in employeeCSVDto)
             {
                 var context = new ValidationContext(dto, null, null);

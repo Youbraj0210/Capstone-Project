@@ -4,7 +4,6 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface ISalaryDisbursementRepository
     {
-        //Task<IEnumerable<SalaryDisbursement>> GetAll();
         public IQueryable<SalaryDisbursement> GetAll();
         Task<SalaryDisbursement?> GetById(int id);
         Task<SalaryDisbursement> Add(SalaryDisbursement disbursement);

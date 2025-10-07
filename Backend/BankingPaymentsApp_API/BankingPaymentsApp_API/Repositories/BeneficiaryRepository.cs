@@ -12,11 +12,6 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        //public async Task<IEnumerable<Beneficiary>> GetAll()
-        //{
-        //    return await _dbContext.Beneficiaries.ToListAsync();
-        //}
-
         public IQueryable<Beneficiary> GetAll()
         {
             return _dbContext.Beneficiaries.AsQueryable();

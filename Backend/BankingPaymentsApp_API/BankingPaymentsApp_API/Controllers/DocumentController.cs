@@ -56,7 +56,6 @@ namespace BankingPaymentsApp_API.Controllers
             var doc = await _documentService.GetById(id);
             if (doc == null) return NotFound($"Document with ID {id} not found");
 
-            //var docDto = _mapper.Map<DocumentDTO>(doc);
             return Ok(doc);
         }
 
@@ -119,7 +118,6 @@ namespace BankingPaymentsApp_API.Controllers
             return NoContent();
         }
 
-        // upload documents
         // POST: api/Document/upload/{id}
         [HttpPost("upload")]
         [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]

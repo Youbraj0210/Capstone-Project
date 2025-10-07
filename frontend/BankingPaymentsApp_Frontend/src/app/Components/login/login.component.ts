@@ -92,7 +92,6 @@ export class LoginComponent implements OnInit {
 
   Login(loginForm: FormGroup) {
     if (this.loginForm.valid) {
-      // trigger invisible captcha check before login
       this.captchaElem.execute();
     } else {
       this.notify.error("Please enter username and password");

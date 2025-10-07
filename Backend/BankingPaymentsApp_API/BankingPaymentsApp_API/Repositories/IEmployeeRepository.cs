@@ -4,9 +4,6 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IEmployeeRepository
     {
-
-       
-        //public Task<IEnumerable<Employee>> GetAll();
         public IQueryable<Employee> GetAll();
 
         public Task<Employee> Add(Employee employee);

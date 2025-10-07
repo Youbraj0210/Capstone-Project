@@ -29,8 +29,8 @@ namespace BankingPaymentsApp_API.Controllers
             {
                 var options = new PaymentIntentCreateOptions
                 {
-                    Amount = dto.Amount,         // e.g., 1000 = $10
-                    Currency = "usd",            // or "inr"
+                    Amount = dto.Amount,      
+                    Currency = "usd",           
                     PaymentMethodTypes = new List<string> { "card" },
                 };
 

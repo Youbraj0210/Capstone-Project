@@ -42,7 +42,7 @@
       No employees found.
     </div>
 
-    <!-- Filters (keep your CSS) -->
+    <!-- Filters -->
     <div *ngIf="employees.length > 0" class="filters">
       <input type="text" placeholder="Name" [(ngModel)]="filterName" />
       <input type="text" placeholder="Account Number" [(ngModel)]="filterAccountNumber" />
@@ -58,7 +58,7 @@
       </button>
     </div>
 
-    <!-- Employee Table (keep your CSS) -->
+    <!-- Employee Table-->
     <div class="employees-list">
       <table class="doc-table">
         <thead>
@@ -89,7 +89,7 @@
       </table>
     </div>
 
-    <!-- Edit Form (Bootstrap Card) -->
+    <!-- Edit Form  -->
     <div *ngIf="editingEmployee" class="card bg-dark text-white mt-4 mx-auto p-3" style="max-width: 650px;">
       <div class="card-body">
         <h4 class="card-title text-center text-primary mb-3">Edit Employee</h4>

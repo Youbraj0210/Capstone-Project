@@ -10,7 +10,7 @@ html, body {
 
 /* ---------------- Section Wrapper ---------------- */
 .documents-section {
-  padding: 2rem 3rem; /* more space around the section */
+  padding: 2rem 3rem;
   margin: 1rem auto;
 }
 
@@ -118,7 +118,7 @@ html, body {
 
 .employees-list th,
 .employees-list td {
-  padding: 1rem 1.2rem; /* more padding for comfort */
+  padding: 1rem 1.2rem; 
   text-align: center;
   color: #fff;
   border-bottom: 1px solid #3c3a4a;

@@ -65,13 +65,11 @@ namespace BankingPaymentsApp_API.Services
         {
             var query = _bankUserRepository.GetAll();
 
-            // Check for duplicate Email
             if (query.Any(bu => bu.UserEmail == bankUser.UserEmail))
             {
                 throw new InvalidOperationException("A Bank User with this email already exists!");
             }
 
-            // Check for duplicate Phone
             if (query.Any(bu => bu.UserPhone == bankUser.UserPhone))
             {
                 throw new InvalidOperationException("A Bank User with this phone number already exists!");
@@ -114,9 +112,6 @@ namespace BankingPaymentsApp_API.Services
             if (bankUser == null) throw new NullReferenceException("No BankUser of id: "+id);
 
             bankUser.isActive = true;
-            //string subject = "You are Now Active";
-            //string body = "You are Now active you can now proceed with work!";
-            //await _emailService.SendEmailToClientAsync(id,subject,body);
             return await _bankUserRepository.Update(bankUser);
         }
 

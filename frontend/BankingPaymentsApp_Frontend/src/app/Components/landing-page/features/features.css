@@ -11,12 +11,12 @@
 
 .carousel {
   display: flex;
-  gap: 2rem; /* space between cards */
+  gap: 2rem; 
   animation: slide 18s linear infinite;
 }
 
 .feature-card {
-  flex: 0 0 300px; /* default card width */
+  flex: 0 0 300px; 
   background: #2a283b;
   border: 1px solid #3c3a4a;
   border-radius: 12px;
@@ -49,18 +49,18 @@
 /* Sliding animation */
 @keyframes slide {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* scroll half the total width */
+  100% { transform: translateX(-50%); } 
 }
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .feature-card {
-    flex: 0 0 45%; /* two cards in view */
+    flex: 0 0 45%; 
   }
 }
 
 @media (max-width: 600px) {
   .feature-card {
-    flex: 0 0 80%; /* one card in view */
+    flex: 0 0 80%; 
   }
 }

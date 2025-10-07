@@ -21,7 +21,7 @@
     <p class="mb-0">Loading user profile...</p>
   </div>
 
-  <!-- Form Card (same white panel look as table wrapper) -->
+  <!-- Form Card  -->
   <div *ngIf="!loading && profileForm" class="table-wrapper bg-white rounded shadow-sm p-3">
     <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="row g-3 needs-validation" novalidate>
 

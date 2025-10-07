@@ -7,5 +7,5 @@ export interface TransactionDTO {
   toFrom?: string;
   transactionTypeId: number;
   amount: number;
-  createdAt: string; // ISO string from backend
+  createdAt: string; 
 }

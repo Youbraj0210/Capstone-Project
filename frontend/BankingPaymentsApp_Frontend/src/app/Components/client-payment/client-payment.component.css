@@ -9,7 +9,7 @@ html, body {
 
 /* ---------------- Section Wrapper ---------------- */
 .documents-section {
-  padding: 1rem 2rem; /* margin from edges */
+  padding: 1rem 2rem; 
 }
 
 /* ---------------- Section Title ---------------- */
@@ -26,7 +26,7 @@ html, body {
 .filter-section input[type="number"],
 .filter-section select.form-control-dark {
   background-color: #1f1c2f;
-  color: #fff; /* typed text color */
+  color: #fff; 
   border: 1px solid #3c3a4a;
   border-radius: 50px;
   padding: 0.5rem 1rem;
@@ -35,7 +35,7 @@ html, body {
   opacity: 1;
   max-width: 100%;
   text-align: center;
-  appearance: none; /* remove default arrow for select */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
@@ -50,7 +50,7 @@ html, body {
 
 /* Calendar icon styling */
 .filter-section input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(100%); /* make icon white */
+  filter: invert(100%); 
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
@@ -73,11 +73,10 @@ html, body {
 }
 
 .filter-section input.form-control-dark::placeholder {
-  color: #fff; /* placeholder text color */
+  color: #fff; 
   opacity: 1;
 }
 
-/* Optional: add custom arrow icon for select */
 .filter-section select.form-control-dark {
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -177,7 +176,7 @@ html, body {
   margin-top: 1rem;
   font-style: italic;
 }
-/* ---------------- Document Card Styles (optional) ---------------- */
+/* ---------------- Document Card Styles  ---------------- */
 .doc-card {
   background: #1f1c2f;
   color: #fff;

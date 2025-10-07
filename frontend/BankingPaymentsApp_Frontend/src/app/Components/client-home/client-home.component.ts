@@ -19,17 +19,17 @@ export class ClientHomeComponent implements OnInit {
   // Employees Doughnut
   employeeChartData!: ChartData<'doughnut'>;
   employeeChartOptions: ChartOptions<'doughnut'> = { responsive: true };
-  employeeChartType = 'doughnut' as const; // <--- cast as const
+  employeeChartType = 'doughnut' as const; 
 
   // Beneficiaries Bar
   beneficiaryChartData!: ChartData<'bar'>;
   beneficiaryChartOptions: ChartOptions<'bar'> = { responsive: true };
-  beneficiaryChartType = 'bar' as const; // <--- cast as const
+  beneficiaryChartType = 'bar' as const; 
 
   // Salary Bar
   salaryChartData!: ChartData<'bar'>;
   salaryChartOptions: ChartOptions<'bar'> = { responsive: true };
-  salaryChartType = 'bar' as const; // <--- cast as const
+  salaryChartType = 'bar' as const; 
 
   constructor(private clientService: ClientRegisterService) {}
 

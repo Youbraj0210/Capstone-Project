@@ -85,7 +85,7 @@ export class ClientProfileComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
+    this.router.navigate(["/ClientUser/" + this.userId]); 
   }
 
   cancel(){

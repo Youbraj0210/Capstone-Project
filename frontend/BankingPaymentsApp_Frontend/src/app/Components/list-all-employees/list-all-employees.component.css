@@ -1,5 +1,5 @@
 .table {
-  font-size: 0.85rem; /* smaller & cleaner text */
+  font-size: 0.85rem; 
   margin-bottom: 0;
 }
 
@@ -20,14 +20,14 @@
 
 .btn-outline-dark {
   font-size: 0.75rem;
-  border-radius: 50rem; /* pill shape */
+  border-radius: 50rem; 
   padding: 2px 10px;
 }
 
 .btn-outline-dark:hover {
-  background-color: #f2f2f2; /* light grey */
-  color: #333;              /* keep text dark */
-  border-color: #bbb;       /* subtle border */
+  background-color: #f2f2f2; 
+  color: #333;            
+  border-color: #bbb;     
 }
 
 .btn-sm {
@@ -48,10 +48,10 @@
 
 .table td, 
 .table th {
-  white-space: nowrap;     /* prevent wrapping */
-  overflow: hidden;        /* hide overflow */
-  text-overflow: ellipsis; /* add ... */
-  max-width: 180px;        /* control width */
+  white-space: nowrap;    
+  overflow: hidden;        
+  text-overflow: ellipsis; 
+  max-width: 180px;        
 }
 
 .table-responsive {
@@ -76,9 +76,9 @@
 
 .breadcrumb a {
   text-decoration: none;
-  color: inherit;   /* inherit text color */
+  color: inherit;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline; /* subtle hover effect */
+  text-decoration: underline; 
 }
