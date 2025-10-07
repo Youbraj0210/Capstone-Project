@@ -23,7 +23,6 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllBanks(
             [FromQuery] string? bankName,
             [FromQuery] string? ifsc,
