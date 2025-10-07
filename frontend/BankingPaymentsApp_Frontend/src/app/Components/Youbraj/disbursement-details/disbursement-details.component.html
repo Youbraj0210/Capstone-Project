@@ -44,19 +44,19 @@
       <thead class="table-light">
         <tr>
           <th>Detail ID</th>
-          <th>Employee ID</th>
+          <!-- <th>Employee ID</th> -->
           <th>Employee Name</th>
           <th>Amount</th>
           <th>Success</th>
           <th>Transaction ID</th>
           <th>Transaction Status</th>
-          <th>Actions</th>
+          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let detail of disbursement?.disbursementDetails">
-          <td class="text-truncate">{{ detail.detailId }}</td>
-          <td class="text-truncate">{{ detail.employeeId }}</td>
+        <tr *ngFor="let detail of disbursement?.disbursementDetails ; let i=index">
+          <td class="text-truncate">{{ i+1 }}</td>
+          <!-- <td class="text-truncate">{{ detail.employeeId }}</td> -->
           <td class="text-truncate" style="max-width: 160px;">
             {{ detail.employee?.employeeName }}
           </td>
@@ -72,12 +72,16 @@
           <td class="text-truncate" style="max-width: 160px;">
             {{ detail.transactionId || 'N/A' }}
           </td>
-          <td>
+          <!-- <td> -->
             <!-- <button class="btn btn-sm btn-outline-primary me-1" (click)="viewTransaction(detail)">View Txn</button>
             <button class="btn btn-sm btn-outline-danger" (click)="retryDisbursement(detail)">Retry</button> -->
-          </td>
+          <!-- </td> -->
         </tr>
       </tbody>
     </table>
+
+    <div *ngIf="disbursement?.disbursementDetails?.length === 0" class="text-center p-3 text-muted">
+        No Disbursment Details found.
+      </div>
   </div>
 </div>

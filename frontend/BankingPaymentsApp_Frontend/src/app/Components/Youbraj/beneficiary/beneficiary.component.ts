@@ -26,7 +26,7 @@ export class BeneficiaryComponent {
   beneficiaries!: Beneficiary[];
   filters: any = {};
 
-  constructor(private auth: AuthService, private notify: NotificationService , private beneficiarySvc: BeneficiaryService, private fb: FormBuilder) { }
+  constructor(private auth: AuthService, private notify: NotificationService, private beneficiarySvc: BeneficiaryService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     const user = this.auth.getLoggedInUser();
@@ -56,10 +56,12 @@ export class BeneficiaryComponent {
     this.beneficiarySvc.deleteBeneficiary(beneficiary.beneficiaryId).subscribe((data) => {
       console.log(data);
       alert(`${beneficiary.beneficiaryName} has been deleted!`)
+      const params = new URLSearchParams(this.filters).toString();
+      this.fetchAllBeneficiaries(params);
     },
       (error) => {
         console.log(error);
-        
+
       })
   }
 

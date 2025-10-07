@@ -22,7 +22,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         //GET: api/User
         [HttpGet]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllUsers(
             [FromQuery] string? fullName,
             [FromQuery] string? userName,
@@ -41,7 +40,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         //POST: api/User
         [HttpPost]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateUser([FromBody] RegisterUserDTO regUser)
         {
             if (!ModelState.IsValid)

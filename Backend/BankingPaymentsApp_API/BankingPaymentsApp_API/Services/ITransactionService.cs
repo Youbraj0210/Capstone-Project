@@ -6,7 +6,7 @@ namespace BankingPaymentsApp_API.Services
     public interface ITransactionService
     {
 
-        public Task<IEnumerable<Transaction>> GetAll(
+        public Task<IEnumerable<TransactionDTO>> GetAll(
             int? clientId,
             int? bankuserId,
             int? transactionId,

@@ -14,7 +14,7 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAll(
+        public async Task<IEnumerable<TransactionDTO>> GetAll(
             int? clientId,
             int? bankuserId,
             int? transactionId,
@@ -56,7 +56,21 @@ namespace BankingPaymentsApp_API.Services
             if (!string.IsNullOrEmpty(toFrom))
                 query = query.Where(p => p.ToFrom.Contains(toFrom));
 
-            return query;
+            var result = await query
+                .Select(t => new TransactionDTO
+                {
+                    TransactionId = t.TransactionId,
+                    AccountNumber = t.Account.AccountNumber,
+                    ClientUserName = t.Account.ClientUser.UserName,
+                    PaymentId = t.PaymentId,
+                    SalaryDisbursementId = t.SalaryDisbursementId,
+                    ToFrom = t.ToFrom,
+                    TransactionTypeId = t.TransactionTypeId,
+                    Amount = t.Amount,
+                    CreatedAt = t.CreatedAt
+                }).ToListAsync();
+
+            return result;
         }
 
 

@@ -24,6 +24,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/ClientUser
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAllClientUsers(
             [FromQuery] string? fullName,
             [FromQuery] string? userName,
@@ -53,7 +54,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/ClientUser/{id}
         [HttpGet("{id}")]
-        //////[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetClientUserById(int id)
         {
             _logger.LogInformation("GetClientUserById started!");
@@ -70,7 +71,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/ClientUser
         [HttpPost]
-        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> CreateClientUser([FromBody] RegisterClientUserDTO dto)
         {
             _logger.LogInformation("CreateClientUser started!");
@@ -107,7 +107,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/ClientUser/{id}
         [HttpPut("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> UpdateClientUser(int id, [FromBody] ClientUserResponseDTO dto)
         {
             _logger.LogInformation("UpdateClientUser started!");
@@ -153,7 +153,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/ClientUser/approve/{id}
         [HttpPut("approve/{id}")]
-        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> ApproveClientUser(int id, [FromBody] ClientUser client)
         {
             _logger.LogInformation("ApproveClientUser started!");
@@ -167,6 +167,8 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpPut("reject/{id}")]
+        [Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+
         public async Task<IActionResult> RejectClientUser(int id, [FromBody] RejectDTO rejectDTO)
         {
             _logger.LogInformation("RejectClientUser started!");

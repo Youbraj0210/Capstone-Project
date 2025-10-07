@@ -15,6 +15,7 @@ import autoTable from 'jspdf-autotable';
 import { AuthService } from '../../../Services/auth.service';
 import { ClientRegisterService } from '../../../Services/client.service';
 import { NotificationService } from '../../../Services/notification.service';
+import { TransactionDTO } from '../../../DTO/TransactionDTO';
 
 @Component({
   selector: 'app-transaction',
@@ -23,7 +24,7 @@ import { NotificationService } from '../../../Services/notification.service';
   styleUrl: './transaction.component.css'
 })
 export class TransactionComponent {
-  transactions: Transaction[] = [];
+  transactions: TransactionDTO[] = [];
   filters: any = {};
   totalTransactionAmount: number = 0;
   userId!: number;
@@ -49,7 +50,7 @@ export class TransactionComponent {
       this.role = role;
     }
 
-    if(role == "BANK_USER"){
+    if (role == "BANK_USER") {
       console.log(user?.userId)
       this.filters.bankuserId = user?.userId;
       this.role = role;
@@ -176,13 +177,13 @@ export class TransactionComponent {
     const doc = new jsPDF();
     doc.text('Transactions Report', 14, 16);
 
-    const tableColumn = ['#', 'Account','Mode', 'Type', 'To/From', 'Amount', 'DateTime'];
+    const tableColumn = ['#', 'Account', 'Mode', 'Type', 'To/From', 'Amount', 'DateTime'];
     const tableRows: any[] = [];
 
     this.transactions.forEach((t, i) => {
       tableRows.push([
         i + 1,
-        `${t.account?.accountNumber}`,
+        `${t.accountNumber}`,
         t.paymentId == null ? t.salaryDisbursementId == null ? "SELF" : "SALARY" : "PAYMENT",
         t.transactionTypeId == 1 ? "CREDIT" : "DEBIT",
         t.toFrom,

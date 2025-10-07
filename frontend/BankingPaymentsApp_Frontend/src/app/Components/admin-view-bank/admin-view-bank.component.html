@@ -30,7 +30,7 @@
     <table class="table table-hover align-middle small mb-0" style="min-width: 800px;">
       <thead class="table-light">
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>Bank Name</th>
           <th>IFSC</th>
           <th>Users</th>
@@ -39,8 +39,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bank of banks">
-          <td class="text-truncate">{{ bank.bankId }}</td>
+        <tr *ngFor="let bank of banks ; let i=index">
+          <td class="text-truncate">{{ i+1 }}</td>
           <td class="text-truncate" style="max-width: 200px;">{{ bank.bankName }}</td>
           <td class="text-truncate" style="max-width: 200px;">{{ bank.ifsc }}</td>
           <td class="text-truncate" style="max-width: 200px;">{{ bank?.users?.length || 0 }}</td>

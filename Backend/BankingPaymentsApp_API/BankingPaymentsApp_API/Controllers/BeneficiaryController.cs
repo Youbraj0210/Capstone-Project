@@ -49,7 +49,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/Beneficiary
         [HttpPost()]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> CreateBeneficiary(BeneficiaryDTO beneficiary)
         {
             _logger.LogInformation("CreateBeneficiary started!");
@@ -65,7 +65,7 @@ namespace BankingPaymentsApp_API.Controllers
         // GET: api/Beneficiary/{id}
         [HttpGet]
         [Route("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBeneficiaryById(int id)
         {
             _logger.LogInformation("GetBeneficiaryById started!");
@@ -81,7 +81,7 @@ namespace BankingPaymentsApp_API.Controllers
         // PUT: api/Beneficiary/{id}
         [HttpPut]
         [Route("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)}")]
         public async Task<IActionResult> UpdateBeneficiary(int id, BeneficiaryDTO beneficiary)
         {
             _logger.LogInformation("UpdateBeneficiary started!");
@@ -104,7 +104,7 @@ namespace BankingPaymentsApp_API.Controllers
         // DELETE: api/Beneficiary/{id}
         [HttpDelete]
         [Route("{id}")]
-       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteBeneficiary(int id)
         {
             _logger.LogInformation("DeleteBeneficiary started!");

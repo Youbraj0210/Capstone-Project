@@ -119,6 +119,7 @@ namespace BankingPaymentsApp_API
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
             });
 
             builder.Services.AddAuthentication(opt =>
@@ -199,6 +200,8 @@ namespace BankingPaymentsApp_API
 
 
             app.UseCors("AllowFrontend");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

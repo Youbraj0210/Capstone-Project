@@ -53,91 +53,48 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
 export const routes: Routes = [
 
   { path: '', redirectTo: 'Landing', pathMatch: 'full' },
-  // {
-  //   path: 'ClientUser/:id',
-  //   component: ClientUserComponent, // dashboard parent
-  //   children: [
-  //     { path: '', pathMatch: 'full', redirectTo: '' },
-  //     { path: 'home', pathMatch: 'full', component: ClientHomeComponent },
-  //     { path: 'profile/:id', component: ClientProfileComponent },
-  //     { path: 'ClientAccount/:id', component: ClientAccountComponent },
-  //     { path: 'ClientDocuments/:userId', component: ClientDocumentsComponent },
-  //     {
-  //       path: 'beneficiaries', component: BeneficiariesComponent, children: [
-  //         { path: 'add', component: BeneficiaryRegisterComponent }
-  //       ]
-  //     },
-
-  //     { path: 'ClientUser/:userId/transactions', component: ClientTransactionComponent },
-  //     { path: 'ClientEmployees/:userId', component: EmployeesComponent },
-  //     { path: 'ClientPayments/:clientId', component: ClientPaymentComponent },
-  //     { path: 'ClientSalaryDisbursement/:userId', component: ClientSalaryDisbursementComponent },
-  //   ]
-  // },
-
-
-  // { path: "bankRegister", component: BankRegisterComponent },
-
-  // {
-  //   path: 'AdminDashboard',
-  //   component: AdminDashboardComponent,
-  //   children: [
-  //     { path: "BankRegister", component: BankRegisterComponent },
-  //     { path: 'AdminBankUsers', component: AdminComponent },
-  //     { path: 'AdminViewBanks', component: AdminViewBankComponent },
-  //     { path: 'AdminHome', component: AdminHomeComponent },
-  //     { path: 'AdminLogs', component: AdminLogsComponent },
-  //   ]
-  // },
-  // { path: '', component: LoginComponent },
   { path: "login", component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [roleGuard], data: { role: "CLIENT_USER" } },
-  //{ path: "ClientRegister", component: ClientRegisterComponent },
-  { path: 'ClientUser/:id', component: ClientUserComponent },
-  { path: "beneficiary", component: BeneficiaryComponent },
-  { path: "beneficiary/create", component: CreateBeneficiaryComponent },
-  { path: "employee", component: ListAllEmployeesComponent },
-  { path: "disbursements", component: DisbursementComponent },
-  { path: "disbursements/:id", component: DisbursementDetailsComponent },
-  { path: "transactions", component: TransactionComponent },
+  // { path: 'ClientUser/:id', component: ClientUserComponent },
+  { path: "beneficiary", component: BeneficiaryComponent, canActivate:[authGuard]},
+  { path: "beneficiary/create", component: CreateBeneficiaryComponent,canActivate:[authGuard] },
+  { path: "employee", component: ListAllEmployeesComponent,canActivate:[authGuard] },
+  { path: "disbursements", component: DisbursementComponent,canActivate:[authGuard]},
+  { path: "disbursements/:id", component: DisbursementDetailsComponent,canActivate:[authGuard] },
+  { path: "transactions", component: TransactionComponent,canActivate:[authGuard] },
   { path: "home", component: HomeComponent, canActivate: [authGuard], data: { role: "CLIENT_USER" } },
-  { path: "profile", component: ProfileComponent },
-  { path: "document/upload", component: DocumentUploadComponent },
-  { path: "profile/edit", component: ClientProfileComponent },
-  { path: "clients", component: ListClientsComponent },
-  { path: "clients/documents/:id", component: ViewDocumentsComponent },
-  { path: "BankUserHome", component: BankUserHomeComponent },
-  { path: "BankUserProfile", component: BankUserProfileComponent },
+  { path: "profile", component: ProfileComponent,canActivate:[authGuard] },
+  { path: "document/upload", component: DocumentUploadComponent,canActivate:[authGuard] },
+  { path: "profile/edit", component: ClientProfileComponent,canActivate:[authGuard] },
+  { path: "clients", component: ListClientsComponent, canActivate:[roleGuard], data:{role: "BANK_USER"}},
+  { path: "clients/documents/:id", component: ViewDocumentsComponent, canActivate: [roleGuard], data:{role:"BANK_USER"}},
+  { path: "BankUserHome", component: BankUserHomeComponent,canActivate: [roleGuard], data:{role:"BANK_USER"}},
+  { path: "BankUserProfile", component: BankUserProfileComponent,canActivate: [roleGuard], data:{role:"BANK_USER"}},
   { path: "clientRegister", component: ClientCreateComponent },
   { path: "DocumentUpload", component: DocumentUploadComponent },
-  { path: "bankusers", component: AdminComponent },
-  { path: "logs", component: AdminLogsComponent },
-  { path: "adminHome", component: AdminHomeComponent },
-  { path: "bank", component: BankRegisterComponent },
-  { path: "banks", component: AdminViewBankComponent },
-  { path: "bank/profile/edit", component: BankuserEditComponent },
-  { path: "checkout", component: CheckoutComponent },
+  { path: "bankusers", component: AdminComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "logs", component: AdminLogsComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "adminHome", component: AdminHomeComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "bank", component: BankRegisterComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "banks", component: AdminViewBankComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "bank/profile/edit", component: BankuserEditComponent,canActivate: [roleGuard], data:{role:"ADMIN"}},
+  { path: "checkout", component: CheckoutComponent,canActivate: [roleGuard], data:{role:"CLIENT_USER"}},
 
 
 
 
   { path: "Landing", component: MainComponent },
-  // { path: 'DocumentUpload/:userId', component: DocumentUploadComponent },
-
-  { path: "ClientUser/:clientId/payments", component: ClientAccountComponent },
-
-  { path: 'BankUser', component: BankUserComponent },
   { path: 'BankUserRegistration', component: BankUserRegisterComponent },
 
 
-  { path: "payments", component: ListPaymentComponent },
-  { path: "payment", component: PaymentComponent },
-  { path: "EmployeeUpload", component: EmployeeUploadComponent },
-  { path: "employees", component: ListAllEmployeesComponent },
-  { path: "salary", component: SalaryDisbursementComponent },
-  { path: "disbursement", component: SalaryDisbursementComponent },
-  { path: "BeneficiaryRegister", component: BeneficiaryRegisterComponent },
-  { path: "disbursement", component: ListSalaryDisbursementComponent },
+  { path: "payments", component: ListPaymentComponent, canActivate:[authGuard]},
+  { path: "payment", component: PaymentComponent, canActivate:[authGuard]},
+  // { path: "EmployeeUpload", component: EmployeeUploadComponent },
+  { path: "employees", component: ListAllEmployeesComponent, canActivate:[authGuard]},
+  // { path: "salary", component: SalaryDisbursementComponent },
+  // { path: "disbursement", component: SalaryDisbursementComponent,canActivate:[authGuard]},
+  // { path: "BeneficiaryRegister", component: BeneficiaryRegisterComponent,},
+  // { path: "disbursement", component: ListSalaryDisbursementComponent },
 
   { path: "**", component: PageNotFoundComponent },
 ];

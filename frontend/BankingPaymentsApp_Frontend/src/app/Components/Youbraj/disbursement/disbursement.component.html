@@ -86,7 +86,8 @@
                                 {{ disb.allEmployees ? 'Yes' : 'No' }}
                             </span>
                         </td>
-                        <td>{{ disb.employees?.length || disb.clientUser?.employees?.length }}</td>
+                        <!-- <td>{{ disb.employees?.length || disb.clientUser?.employees?.length }}</td> -->
+                        <td>{{ disb.employees?.length || disb.disbursementDetails?.length || "-" }}</td>
                         <td>
                             <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'"
                                 class="btn btn-sm btn-outline-success me-1"
@@ -99,6 +100,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div *ngIf="disbursements?.length === 0" class="text-center p-3 text-muted">
+                No Salary Disbursement found.
+            </div>
         </div>
     </div>
 </div>

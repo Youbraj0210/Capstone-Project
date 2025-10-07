@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Transaction } from '../Models/Transaction';
+import { TransactionDTO } from '../DTO/TransactionDTO';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
@@ -25,8 +26,8 @@ export class TransactionService {
     return this.http.get<any[]>(this.apiUrl, { params });
   }
 
-  getAllTransaction(queryParams: string): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.apiUrl + `?${queryParams}`);
+  getAllTransaction(queryParams: string): Observable<TransactionDTO[]> {
+    return this.http.get<TransactionDTO[]>(this.apiUrl + `?${queryParams}`);
   }
 
   getTransactionById(id:number):Observable<Transaction>{

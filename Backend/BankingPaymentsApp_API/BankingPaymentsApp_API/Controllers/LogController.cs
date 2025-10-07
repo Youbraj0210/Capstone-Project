@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankingPaymentsApp_API.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Linq;
 
@@ -17,6 +19,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/logs
         [HttpGet]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public IActionResult GetLogs([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             if (!Directory.Exists(logDirectory))

@@ -26,7 +26,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser
         [HttpGet]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> GetAllBankUsers(
             [FromQuery] string? fullName,
             [FromQuery] string? userName,
@@ -55,7 +55,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/BankUser/{id}
         [HttpGet("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetBankUserById(int id)
         {
             _logger.LogInformation("GetBankUserById started!");
@@ -71,7 +71,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         // POST: api/BankUser
         [HttpPost]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> CreateBankUser([FromBody] RegisterBankUserDTO dto)
         {
             _logger.LogInformation("CreateBankUser started!");
@@ -152,7 +151,7 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpPut("approve/{id}")]
-        //[Authorize(Roles = $"{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> ApproveBankUser(int id, [FromBody] BankUser bankUser)
         {
             _logger.LogInformation("ApproveBankUser started!");
@@ -166,6 +165,7 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpPut("reject/{id}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)}")]
         public async Task<IActionResult> RejectBankUser(int id, [FromBody] RejectDTO rejectDTO)
         {
             _logger.LogInformation("RejectBanktUser started!");

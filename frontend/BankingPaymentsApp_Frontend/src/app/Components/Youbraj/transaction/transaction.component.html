@@ -59,7 +59,7 @@
                     <tr *ngFor="let txn of transactions; let i=index">
                         <td class="text-truncate">{{ i+1 }}</td>
                         <td class="text-truncate" style="max-width: 160px;">
-                            {{ txn.account?.accountNumber }} - {{ txn.account?.clientUser?.userName }}
+                            {{ txn.accountNumber }} - {{ txn.clientUserName }}
                         </td>
                         <td class="text-truncate" style="max-width: 140px;">
                             {{ txn.paymentId == null ? txn.salaryDisbursementId == null ? "SELF" : "SALARY" : "PAYMENT" }}

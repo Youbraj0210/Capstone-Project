@@ -12,7 +12,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   if (auth.isLoggedIn() && userRole === expectedRole) {
     return true; // allow
   } else {
-    // redirect to no-access page
+    auth.logout();
     return router.createUrlTree(['/login']);
   }
   //i can just redirect to /no-access page where i shows you tried to access restricted info;

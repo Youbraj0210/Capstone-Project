@@ -31,7 +31,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document
         [HttpGet]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<PagedResultDTO<DocumentDTO>>> GetAll(
             [FromQuery] string? documentName,
             [FromQuery] int? pageNumber,
@@ -50,7 +50,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/{id}
         [HttpGet("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> GetById(int id)
         {
             var doc = await _documentService.GetById(id);
@@ -74,7 +74,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // PUT: api/Document/update/{id}
         [HttpPut("update/{id}")]
-       // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UpdateDocument(int id, [FromForm] DocumentDTO dto, IFormFile file)
         {
             var existingDoc = await _documentService.GetById(id);
@@ -109,7 +109,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/Document/{id}
         [HttpDelete("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult> Delete(int id)
         {
             var existingDoc = await _documentService.GetById(id);
@@ -122,7 +122,7 @@ namespace BankingPaymentsApp_API.Controllers
         // upload documents
         // POST: api/Document/upload/{id}
         [HttpPost("upload")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
             _logger.LogInformation("UploadDocument started!");
@@ -176,7 +176,7 @@ namespace BankingPaymentsApp_API.Controllers
 
         // GET: api/Document/client/{clientId}
         [HttpGet("client/{clientId}")]
-        // [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
+        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult> GetDocumentsByClientId(int clientId,
         [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 5)
