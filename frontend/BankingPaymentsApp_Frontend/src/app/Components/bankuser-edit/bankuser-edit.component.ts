@@ -69,7 +69,7 @@ export class BankuserEditComponent {
     this.bankUserService.updateBankUser(this.userId, updatedUser).subscribe({
       next: (data) => {
         console.log(data);
-        this.router.navigate(['/BankUserProfile']);
+        this.router.navigate(['/bank/profile']);
       },
       error: (err) => console.error('Error updating bank user:', err)
     });
