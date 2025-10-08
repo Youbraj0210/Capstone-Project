@@ -1,5 +1,5 @@
 .documents-section {
-  padding: 1rem 2rem; /* margin from edges */
+  padding: 1rem 2rem;
 }
 
 .section-title {
@@ -12,18 +12,18 @@
 
 .filter-section input.form-control-dark {
   background-color: #1f1c2f;
-  color: #0b0505; /* typed text color */
+  color: #0b0505; 
   border: 1px solid #3c3a4a;
   border-radius: 50px;
   padding: 0.5rem 1rem;
-  width: 400px; /* increase width */
-  max-width: 100%; /* responsive */
+  width: 400px;
+  max-width: 100%;
   text-align: center;
   height: 50px;
 }
 
 .filter-section input.form-control-dark::placeholder {
-  color: #fff; /* placeholder text color */
+  color: #fff; 
   opacity: 1;
 }
 

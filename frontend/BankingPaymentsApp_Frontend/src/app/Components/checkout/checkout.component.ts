@@ -100,7 +100,7 @@ export class CheckoutComponent {
       this.stripeSvc.finalizePayment(accountId, this.amount).subscribe((data) => {
         console.log(data);
         this.notify.success("Self Transfer is completed");
-        this.router.navigate(["/transactions"])
+        this.router.navigate(["/client/transactions"])
       },
         (error) => {
           console.log(error);

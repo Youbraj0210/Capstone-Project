@@ -38,7 +38,6 @@ export class ListAllEmployeesComponent implements OnInit {
     { id: true, name: "Active" },
     { id: false, name: "InActive" }
   ];
-  // @Output() event = new EventEmitter<{ allEmployees: boolean, employeeIds: number[] }>
   constructor(private router: Router, private auth: AuthService, private notify: NotificationService , private employeeSvc: EmployeeService, private disbursementSvc: SalaryDisbursementService) { }
 
   ngOnInit(): void {
@@ -101,7 +100,6 @@ export class ListAllEmployeesComponent implements OnInit {
       employeeIds: this.selectedEmployeeIds.sort()
     };
 
-    // this.event.emit(payload);
   }
 
   createDisbursement() {
@@ -113,7 +111,7 @@ export class ListAllEmployeesComponent implements OnInit {
     this.disbursementSvc.createSalaryDisbursement(payload).subscribe((data) => {
       console.log(data);
       this.notify.success("Disbursement Created Successfully!");
-      this.router.navigate(["/disbursements"]);
+      this.router.navigate(["/client/disbursements"]);
 
     },
       (error) => {
@@ -152,17 +150,16 @@ export class ListAllEmployeesComponent implements OnInit {
   }
 
   onAmountFilter(amount: { minAmount: string | null, maxAmount: string | null }) {
-    // this.filters.minSalary = amount.minAmount;
-    // this.filters.maxSalary = amount.maxAmount;
+
     if (amount.minAmount !== null) {
       this.filters.minSalary = amount.minAmount;
     } else {
-      delete this.filters.minSalary; // ✅ remove old value
+      delete this.filters.minSalary; 
     }
     if (amount.maxAmount !== null) {
       this.filters.maxSalary = amount.maxAmount;
     } else {
-      delete this.filters.maxSalary; // ✅ remove old value
+      delete this.filters.maxSalary; 
     }
 
     const params = new URLSearchParams(this.filters).toString();
@@ -170,13 +167,13 @@ export class ListAllEmployeesComponent implements OnInit {
   }
 
   onAccountFilter(account: { payeeAccountNumber: string | null }) {
-    // this.filters.accountNumber = account.payeeAccountNumber;
+
     console.log(this.filters);
 
     if (account.payeeAccountNumber !== null) {
       this.filters.accountNumber = account.payeeAccountNumber;
     } else {
-      delete this.filters.accountNumber; // ✅ remove old value
+      delete this.filters.accountNumber; 
     }
 
     const params = new URLSearchParams(this.filters).toString();
@@ -220,13 +217,6 @@ export class ListAllEmployeesComponent implements OnInit {
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllEmployees(params);
   }
-
-  // onStatusFilter(status: { paymentStatusId: string }) {
-  //   this.filters.paymentStatusId = status.paymentStatusId;
-
-  //   const params = new URLSearchParams(this.filters).toString();
-  //   this.fetchAllEmployees(params);
-  // }
 
   downloadPDF(): void {
     if (!this.employees || this.employees.length === 0) {

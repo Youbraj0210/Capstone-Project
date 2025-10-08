@@ -73,6 +73,7 @@ export class ClientProfileComponent implements OnInit {
         next: (res) => {
           this.notify.success("Profile updated successfully!");
           this.userData = res;
+          this.goBack();
         },
         error: (err) => {
           console.error("Error updating profile:", err);
@@ -85,7 +86,7 @@ export class ClientProfileComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(["/ClientUser/" + this.userId]);  // navigates to previous page
+    this.router.navigate(["/client/profile"]); 
   }
 
   cancel(){

@@ -1,7 +1,6 @@
 .footer {
   background: #1d1b2a;
   padding: 3rem 2rem;
-  /* 🔑 CRITICAL FIX: Forces the footer to contain child margins */
   overflow: hidden; 
 }
 
@@ -49,6 +48,5 @@
 .footer .footer-bottom p {
   color: var(--text-secondary);
   font-size: 0.9rem;
-  /* Ensure the paragraph has zero bottom margin */
   margin-bottom: 0;
 }

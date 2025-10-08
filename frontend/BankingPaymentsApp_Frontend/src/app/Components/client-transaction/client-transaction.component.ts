@@ -23,8 +23,8 @@ export class ClientTransactionComponent implements OnInit {
 
   // Filter fields
   filterTransactionId?: number;
-  filterTransactionType?: string; // 'Credit' or 'Debit'
-  filterDate?: string; // 'YYYY-MM-DD'
+  filterTransactionType?: string; 
+  filterDate?: string; 
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +56,7 @@ export class ClientTransactionComponent implements OnInit {
           amount: t.amount,
           createdAt: t.createdAt
         }));
-        this.transactions = [...this.allTransactions]; // initialize display
+        this.transactions = [...this.allTransactions]; 
         this.loading = false;
       },
       error: (err: any) => {

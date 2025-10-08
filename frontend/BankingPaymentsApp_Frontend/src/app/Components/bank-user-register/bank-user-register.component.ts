@@ -93,7 +93,6 @@ register() {
 
   const bankUser = this.registerForm.value;
 
-  // clear old backend errors before new request
   this.backendEmailError = null;
   this.backendPhoneError = null;
 
@@ -106,14 +105,13 @@ register() {
     error: (err) => {
       console.error(err);
 
-      // Check backend error message and assign
       if (err.error && typeof err.error === 'string') {
         if (err.error.includes('email')) {
           this.backendEmailError = err.error;
         } else if (err.error.includes('phone')) {
           this.backendPhoneError = err.error;
         } else {
-          this.notify.error(err.error); // fallback
+          this.notify.error(err.error); 
         }
       } else {
         this.notify.error('Registration failed!');

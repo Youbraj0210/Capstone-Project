@@ -63,8 +63,6 @@ export class ListPaymentComponent implements OnInit {
   fetchAllPayments(params: string) {
     this.paymentSvc.getAllPayments(params).subscribe((data) => {
       console.log(data);
-      // const pendingPayments = data.filter(e => e.paymentStatusId == 3);
-      // this.payments = pendingPayments;
       this.payments = data;
       this.totalPaymentAmount = data.reduce((sum, p) => sum + p.amount, 0);
       this.approved = data.filter(p => p.paymentStatusId == 1).length;
@@ -129,12 +127,12 @@ export class ListPaymentComponent implements OnInit {
     if (amount.minAmount !== null) {
       this.filters.minAmount = amount.minAmount;
     } else {
-      delete this.filters.minAmount; // ✅ remove old value
+      delete this.filters.minAmount; 
     }
     if (amount.maxAmount !== null) {
       this.filters.maxAmount = amount.maxAmount;
     } else {
-      delete this.filters.maxAmount; // ✅ remove old value
+      delete this.filters.maxAmount; 
     }
 
     const params = new URLSearchParams(this.filters).toString();
@@ -142,14 +140,13 @@ export class ListPaymentComponent implements OnInit {
   }
 
   onAccountFilter(account: { payeeAccountNumber: string | null }) {
-    // this.filters.payeeAccountNumber = account.payeeAccountNumber;
     console.log(this.filters);
     if (account.payeeAccountNumber !== null) {
       this.filters.payeeAccountNumber = account.payeeAccountNumber;
     } else {
       console.log("Before delete:", this.filters);
       delete this.filters.payeeAccountNumber;
-      console.log("After delete:", this.filters); // ✅ remove old value
+      console.log("After delete:", this.filters); 
     }
 
     const params = new URLSearchParams(this.filters).toString();

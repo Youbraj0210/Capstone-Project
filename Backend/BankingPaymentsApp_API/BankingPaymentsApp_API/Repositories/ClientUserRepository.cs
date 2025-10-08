@@ -12,10 +12,6 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        //public async Task<IEnumerable<ClientUser>> GetAll()
-        //{
-        //    return await _dbContext.ClientUsers.Include(u => u.Role).Include(u => u.Account).Include(u => u.Documents).Include(u => u.Documents).Include(u => u.Employees).Include(u => u.Beneficiaries).Include(u => u.BankUser).ToListAsync();
-        //}
 
         public IQueryable<ClientUser> GetAll()
         {

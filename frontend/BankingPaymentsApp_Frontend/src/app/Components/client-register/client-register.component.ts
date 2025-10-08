@@ -19,7 +19,7 @@ export class ClientRegisterComponent {
 
   registerForm: FormGroup;
   banks!:Bank[];
-  passwordFieldType: 'password' | 'text' = 'password'; // for eye toggle
+  passwordFieldType: 'password' | 'text' = 'password'; 
   @Output() nextStep = new EventEmitter<void>();
 
   constructor(
@@ -75,7 +75,7 @@ export class ClientRegisterComponent {
 
   this.clientService.registerClient(user).subscribe({
     next: (res) => {
-      const clientId = res.userId; // make sure this matches API response
+      const clientId = res.userId;
       if (!clientId) {
         console.error('ClientId missing in response!');
         return;
@@ -87,7 +87,6 @@ export class ClientRegisterComponent {
     error: (err) => {
       console.error('HTTP Error:', err);
 
-      // 🔹 Specific handling for duplicate email/phone
       if (err.status === 400 && typeof err.error === 'string') {
         if (err.error.includes("email")) {
           this.registerForm.get('UserEmail')?.setErrors({ duplicate: true });
@@ -96,7 +95,7 @@ export class ClientRegisterComponent {
           this.registerForm.get('UserPhone')?.setErrors({ duplicate: true });
         }
         else {
-          this.notify.error(err.error); // show other backend messages
+          this.notify.error(err.error); 
         }
       } else {
         this.notify.success('Registration failed!');

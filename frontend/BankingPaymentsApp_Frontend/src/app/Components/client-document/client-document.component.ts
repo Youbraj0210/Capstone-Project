@@ -23,7 +23,7 @@ export class ClientDocumentsComponent implements OnInit {
 
   // Pagination
   pageNumber = 1;
-  pageSize = 6; // Number of cards per page
+  pageSize = 6;
   totalRecords = 0;
   totalPages = 0;
   totalPagesArray: number[] = [];

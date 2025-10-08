@@ -12,17 +12,6 @@ namespace BankingPaymentsApp_API.Repositories
         {
             _dbContext = dbContext;
         }
-
-        // ✅ Get all SalaryDisbursements with related ClientUser + DisbursementDetails
-        //public async Task<IEnumerable<SalaryDisbursement>> GetAll()
-        //{
-        //    return await _dbContext.SalaryDisbursements
-        //        .Include(s => s.ClientUser).ThenInclude(u=>u.Employees)
-        //        .Include(s => s.DisbursementDetails)
-        //        .Include(s=>s.Employees)
-        //        .ToListAsync();
-        //}
-
         public IQueryable<SalaryDisbursement> GetAll()
         {
             return _dbContext.SalaryDisbursements
@@ -33,7 +22,6 @@ namespace BankingPaymentsApp_API.Repositories
                              .AsQueryable();
         }
 
-        // ✅ Get SalaryDisbursement by Id
         public async Task<SalaryDisbursement?> GetById(int id)
         {
             return await _dbContext.SalaryDisbursements
@@ -43,7 +31,7 @@ namespace BankingPaymentsApp_API.Repositories
                 .FirstOrDefaultAsync(s => s.SalaryDisbursementId == id);
         }
 
-        // ✅ Add new SalaryDisbursement
+
         public async Task<SalaryDisbursement> Add(SalaryDisbursement disbursement)
         {
             await _dbContext.SalaryDisbursements.AddAsync(disbursement);
@@ -51,7 +39,6 @@ namespace BankingPaymentsApp_API.Repositories
             return disbursement;
         }
 
-        // ✅ Update SalaryDisbursement
         public async Task<SalaryDisbursement?> Update(SalaryDisbursement disbursement)
         {
             var existing = await GetById(disbursement.SalaryDisbursementId);
@@ -62,14 +49,12 @@ namespace BankingPaymentsApp_API.Repositories
             existing.TotalAmount = disbursement.TotalAmount;
             existing.DisbursementDate = disbursement.DisbursementDate;
 
-            // Optionally update DisbursementDetails if needed
             existing.DisbursementDetails = disbursement.DisbursementDetails;
 
             await _dbContext.SaveChangesAsync();
             return existing;
         }
 
-        // ✅ Delete SalaryDisbursement by Id
         public async Task DeleteById(int id)
         {
             var existing = await GetById(id);

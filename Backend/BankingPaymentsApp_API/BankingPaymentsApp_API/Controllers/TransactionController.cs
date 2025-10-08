@@ -21,7 +21,6 @@ namespace BankingPaymentsApp_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> GetAll(
             [FromQuery] int? clientId,
             [FromQuery] int? bankuserId,

@@ -16,10 +16,11 @@ import { AuthService } from '../../../Services/auth.service';
 import { ClientRegisterService } from '../../../Services/client.service';
 import { NotificationService } from '../../../Services/notification.service';
 import { TransactionDTO } from '../../../DTO/TransactionDTO';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
-  imports: [CommonModule, TransactionTypePipe, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent],
+  imports: [CommonModule, TransactionTypePipe, ReactiveFormsModule, DateFilterComponent, AmountFilterComponent, AccountNumberFilterComponent, IdFilterComponent, NameFilterComponent, StatusFilterComponent,RouterLink],
   templateUrl: './transaction.component.html',
   styleUrl: './transaction.component.css'
 })

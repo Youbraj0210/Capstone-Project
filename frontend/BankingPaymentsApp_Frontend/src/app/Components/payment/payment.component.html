@@ -1,13 +1,16 @@
 <div class="mt-4 px-3 w-100">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/payments">Payments</a></li>
+            <li class="breadcrumb-item">
+                <a [routerLink]="role === 'CLIENT_USER' ? '/client/home' : role === 'BANK_USER' ? '/bank/home' : '/admin/home'">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item"><a routerLink="/client/payments">Payments</a></li>
             <li class="breadcrumb-item active" aria-current="page">Make Payment</li>
         </ol>
     </nav>
     <div class="row">
-        <!-- Left: Make Payment -->
         <div [ngClass]="displayBeneficiaryForm ? 'col-md-6 pe-md-4 border-md-end' : 'col-md-12'"
             style="border-color: #ddd;">
             <h2 class="fw-bold mb-4" style="color: #5146ea; font-size: 1.75rem;">
@@ -16,14 +19,12 @@
             <hr class="mb-4" style="border-color: #333;">
 
             <form [formGroup]="createPayment" (submit)="makePayment()" class="d-grid gap-3">
-                <!-- Amount -->
                 <div>
                     <label class="form-label fw-semibold mb-1" style="font-size: 0.9rem; color: #333;">Amount</label>
                     <input class="form-control modern-input" formControlName="amount" placeholder="Enter amount"
                         type="number" min="0" />
                 </div>
 
-                <!-- Payee -->
                 <div>
                     <label class="form-label fw-semibold mb-1" style="font-size: 0.9rem; color: #333;">Pay To</label>
                     <select class="form-select modern-input" formControlName="payeeAccountNumber">
@@ -34,21 +35,18 @@
                     </select>
                 </div>
 
-                <!-- Button -->
                 <button type="submit" class="btn modern-btn w-100">
                     Make Payment
                 </button>
             </form>
         </div>
 
-        <!-- Right: Add Beneficiary -->
         <div *ngIf="displayBeneficiaryForm" class="col-md-6 ps-md-4">
             <h2 class="fw-bold mb-4" style="color: #5146ea; font-size: 1.75rem;">
                 Add a Beneficiary
             </h2>
             <hr class="mb-4" style="border-color: #333;">
 
-            <!-- Your component here -->
             <app-beneficiary-register (beneficiaryAdded)="onBeneficiaryAdded($event)">
             </app-beneficiary-register>
         </div>

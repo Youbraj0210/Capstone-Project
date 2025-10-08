@@ -16,9 +16,9 @@
 
 .breadcrumb a {
   text-decoration: none;
-  color: inherit;   /* inherit text color */
+  color: inherit;  
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline; /* subtle hover effect */
+  text-decoration: underline;
 }

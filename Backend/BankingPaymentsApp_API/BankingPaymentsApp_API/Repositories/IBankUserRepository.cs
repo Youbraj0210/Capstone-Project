@@ -4,7 +4,6 @@ namespace BankingPaymentsApp_API.Repositories
 {
     public interface IBankUserRepository
     {
-        //Task<IEnumerable<BankUser>> GetAll();
         public IQueryable<BankUser> GetAll();
         Task<BankUser> Add(BankUser bankUser);
         Task<BankUser?> GetById(int id);

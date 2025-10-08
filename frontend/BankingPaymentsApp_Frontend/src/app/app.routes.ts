@@ -118,6 +118,7 @@ export const routes: Routes = [
       { path: 'document/upload', component: DocumentUploadComponent },
       { path: 'beneficiaries', component: BeneficiaryComponent },
       { path: 'beneficiaries/create', component: CreateBeneficiaryComponent },
+      { path: 'employees', component: ListAllEmployeesComponent },
       { path: 'transactions', component: TransactionComponent },
       { path: 'disbursements', component: DisbursementComponent },
       { path: 'disbursements/:id', component: DisbursementDetailsComponent },
@@ -136,8 +137,13 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: BankUserHomeComponent },
       { path: 'profile', component: BankUserProfileComponent },
+      { path: 'profile/edit', component: BankuserEditComponent },
       { path: 'clients', component: ListClientsComponent },
-      { path: 'clients/documents/:id', component: ViewDocumentsComponent }
+      { path: 'clients/documents/:id', component: ViewDocumentsComponent },
+      { path: 'transactions', component: TransactionComponent },
+      { path: 'disbursements', component: DisbursementComponent },
+      { path: 'disbursements/:id', component: DisbursementDetailsComponent },
+
     ]
   },
 
@@ -148,11 +154,10 @@ export const routes: Routes = [
     data: { role: 'ADMIN' },
     children: [
       { path: 'home', component: AdminHomeComponent },
-      { path: 'logs', component: AdminLogsComponent },
-      { path: 'banks', component: AdminViewBankComponent },
       { path: 'bankusers', component: AdminComponent },
-      { path: 'bank/register', component: BankRegisterComponent },
-      { path: 'bank/profile/edit', component: BankuserEditComponent }
+      { path: 'logs', component: AdminLogsComponent },
+      { path: 'banks', component: ListPaymentComponent },
+      { path: 'transactions', component: TransactionComponent }
     ]
   },
 
@@ -161,9 +166,7 @@ export const routes: Routes = [
     path: 'common',
     canActivate: [authGuard],
     children: [
-      { path: 'employees', component: ListAllEmployeesComponent },
-      { path: 'payments', component: ListPaymentComponent },
-      { path: 'payment', component: PaymentComponent }
+      { path: 'payments', component: ListPaymentComponent }
     ]
   },
 

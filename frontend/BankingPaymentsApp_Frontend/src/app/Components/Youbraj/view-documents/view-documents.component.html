@@ -2,9 +2,21 @@
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/clients">Clients</a></li>
-            <li class="breadcrumb-item active" aria-current="page">View Documents</li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a [routerLink]="
+                    role === 'CLIENT_USER' ? '/client/home' : 
+                    role === 'BANK_USER' ? '/bank/home' : 
+                    '/admin/home'
+                    ">
+                        Home
+                    </a>
+                </li>
+                <li *ngIf="role === 'BANK_USER' || role === 'ADMIN'" class="breadcrumb-item">
+                    <a [routerLink]="role === 'BANK_USER' ? '/bank/clients' : '/admin/bankusers'">Clients</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">View Documents</li>
+            </ol>
         </ol>
     </nav>
 

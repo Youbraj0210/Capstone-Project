@@ -62,10 +62,10 @@ export class AdminHomeComponent implements OnInit {
 
   public chartOptions: ChartOptions<'doughnut' | 'line' | 'bar'> = {
     responsive: true,
-    maintainAspectRatio: false, // allows canvas to fit the container
+    maintainAspectRatio: false, 
     plugins: {
       legend: {
-        position: 'top', // or 'bottom'
+        position: 'top', 
         labels: {
           boxWidth: 12,
           padding: 10
@@ -77,7 +77,7 @@ export class AdminHomeComponent implements OnInit {
       }
     },
     layout: {
-      padding: 20 // optional, adds space inside the chart
+      padding: 20
     },
     scales: {
       x: { display: true },

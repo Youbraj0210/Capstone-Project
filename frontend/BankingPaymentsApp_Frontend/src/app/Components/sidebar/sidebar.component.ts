@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ClientRegisterService } from '../../Services/client.service';
@@ -7,7 +7,7 @@ import { ClientUser } from '../../Models/ClientUser';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule,RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })

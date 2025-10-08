@@ -44,8 +44,8 @@ export class BeneficiaryRegisterComponent implements OnInit {
         this.notify.success(`The beneficiary ${data.beneficiaryName} has been added sucessfully!` )
 
         this.beneficiaryAdded.emit(data);
-        this.cancelAdd.emit(); // close the form after successful addition
-        this.router.navigate(["/beneficiary"])
+        this.cancelAdd.emit(); 
+        this.router.navigate(["/client/beneficiaries"])
       },
       (error) => {
         console.log(error);
@@ -55,6 +55,6 @@ export class BeneficiaryRegisterComponent implements OnInit {
   }
 
   cancel() {
-    this.cancelAdd.emit(); // notify parent to hide the form
+    this.cancelAdd.emit();
   }
 }

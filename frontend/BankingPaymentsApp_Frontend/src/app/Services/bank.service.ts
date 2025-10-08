@@ -25,9 +25,6 @@ export class BankService {
   getAllBanks(queryParams: string): Observable<Bank[]> {
     return this.http.get<Bank[]>(`${this.baseUrl}?${queryParams}`);
   }
-  // getAllBanks(pageNumber: number = 1, pageSize: number = 5): Observable<any> {
-  //   return this.http.get<any>(`${this.baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-  // }
 
 
   getBankById(id: number): Observable<Bank> {

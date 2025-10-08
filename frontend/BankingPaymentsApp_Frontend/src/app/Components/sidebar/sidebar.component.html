@@ -1,68 +1,91 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-2 bg-white vh-100 border-end" style="width: 220px;">
-  <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
+  <a routerLink="/landing" class="d-flex align-items-center mb-3 text-decoration-none">
     <span class="fs-6 fw-semibold ms-2">PAY PRO</span>
   </a>
   <hr class="my-2">
 
   <ul class="nav nav-pills flex-column mb-auto small">
+    <!-- CLIENT USER -->
     <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
-      <a routerLink="/home" class="nav-link d-flex align-items-center">
+      <a routerLink="/client/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+         class="nav-link d-flex align-items-center">
+        <i class="bi bi-house me-2"></i> Home
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
+      <a routerLink="/client/profile" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-person me-2"></i> Profile
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified" class="nav-item">
+      <a routerLink="/client/beneficiaries" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-wallet2 me-2"></i> Beneficiaries
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified" class="nav-item">
+      <a routerLink="/client/employees" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-people me-2"></i> Employees
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified" class="nav-item">
+      <a routerLink="/client/disbursements" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-box-seam me-2"></i> Salary Disbursement
+      </a>
+    </li>
+    <li *ngIf="role == 'CLIENT_USER' && kycVierified" class="nav-item">
+      <a routerLink="/client/transactions" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-arrow-left-right me-2"></i> Transactions
+      </a>
+    </li>
+
+    <!-- BANK USER -->
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/bank/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+         class="nav-link d-flex align-items-center">
         <i class="bi bi-house me-2"></i> Home
       </a>
     </li>
     <li *ngIf="role == 'BANK_USER'" class="nav-item">
-      <a routerLink="/BankUserHome" class="nav-link d-flex align-items-center">
+      <a routerLink="/bank/profile" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-person me-2"></i> Profile
+      </a>
+    </li>
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/bank/clients" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-people me-2"></i> Clients
+      </a>
+    </li>
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/bank/transactions" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-arrow-left-right me-2"></i> Transactions
+      </a>
+    </li>
+    <li *ngIf="role == 'BANK_USER'" class="nav-item">
+      <a routerLink="/bank/disbursements" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-box-seam me-2"></i> Salary Disbursement
+      </a>
+    </li>
+
+    <!-- ADMIN -->
+    <li *ngIf="role == 'ADMIN'" class="nav-item">
+      <a routerLink="/admin/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+         class="nav-link d-flex align-items-center">
         <i class="bi bi-house me-2"></i> Home
       </a>
     </li>
     <li *ngIf="role == 'ADMIN'" class="nav-item">
-      <a routerLink="/adminHome" class="nav-link d-flex align-items-center">
-        <i class="bi bi-house me-2"></i> Home
-      </a>
-    </li>
-    <li *ngIf="role == 'CLIENT_USER'" class="nav-item">
-      <a routerLink="/profile" class="nav-link d-flex align-items-center">
-        <i class="bi bi-person me-2"></i> Profile
-      </a>
-    </li>
-    <li *ngIf="role == 'BANK_USER'" class="nav-item">
-      <a routerLink="/BankUserProfile" class="nav-link d-flex align-items-center">
-        <i class="bi bi-person me-2"></i> Profile
-      </a>
-    </li>
-    <li *ngIf="role == 'CLIENT_USER' && kycVierified">
-      <a routerLink="/beneficiary" class="nav-link d-flex align-items-center">
-        <i class="bi bi-wallet2 me-2"></i> Beneficiary
-      </a>
-    </li>
-    <li *ngIf="role == 'BANK_USER'">
-      <a  routerLink="/clients" class="nav-link d-flex align-items-center">
-        <i class="bi bi-people me-2"></i> Clients
-      </a>
-    </li>
-    <li *ngIf="role == 'ADMIN'">
-      <a  routerLink="/bankusers" class="nav-link d-flex align-items-center">
+      <a routerLink="/admin/bankusers" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-people me-2"></i> Bank Users
       </a>
     </li>
-    <li *ngIf="role == 'ADMIN'">
-      <a  routerLink="/logs" class="nav-link d-flex align-items-center">
+    <li *ngIf="role == 'ADMIN'" class="nav-item">
+      <a routerLink="/admin/logs" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-arrow-left-right me-2"></i> Audit Logs
       </a>
     </li>
-    <li *ngIf="kycVierified">
-      <a routerLink="/transactions" class="nav-link d-flex align-items-center">
+    <li *ngIf="role == 'ADMIN'" class="nav-item">
+      <a routerLink="/admin/transactions" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-arrow-left-right me-2"></i> Transactions
-      </a>
-    </li>
-    <li *ngIf="role == 'CLIENT_USER' && kycVierified">
-      <a routerLink="/employee" class="nav-link d-flex align-items-center">
-        <i class="bi bi-people me-2"></i> Employees
-      </a>
-    </li>
-    <li *ngIf="kycVierified">
-      <a routerLink="/disbursements" class="nav-link d-flex align-items-center">
-        <i class="bi bi-box-seam me-2"></i> Salary Disbursement
       </a>
     </li>
   </ul>
@@ -72,29 +95,29 @@
   <div class="small text-muted fw-bold ps-1">Products</div>
   <ul class="nav flex-column small mt-2">
     <li *ngIf="kycVierified">
-      <a routerLink="/payments" class="nav-link d-flex align-items-center">
+      <a routerLink="/common/payments" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-credit-card me-2"></i> Payments
       </a>
     </li>
     <li *ngIf="role == 'ADMIN'">
-      <a routerLink="/banks" class="nav-link d-flex align-items-center">
+      <a routerLink="/admin/banks" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-bank me-2"></i> Banks
       </a>
     </li>
     <li>
-      <a routerLink="/reporting" class="nav-link d-flex align-items-center">
+      <a routerLink="/client/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-bar-chart-line me-2"></i> Reporting
       </a>
     </li>
     <li>
-      <a routerLink="/more" class="nav-link d-flex align-items-center">
+      <a routerLink="/landing" routerLinkActive="active" class="nav-link d-flex align-items-center">
         <i class="bi bi-three-dots me-2"></i> More
       </a>
     </li>
   </ul>
 
   <div class="mt-auto pt-3 border-top">
-    <a (click)="logout()" class="nav-link small d-flex align-items-center text-muted">
+    <a (click)="logout()" class="nav-link small d-flex align-items-center text-muted" style="cursor: pointer;">
       <i class="bi bi-code-slash me-2"></i> Logout
     </a>
   </div>

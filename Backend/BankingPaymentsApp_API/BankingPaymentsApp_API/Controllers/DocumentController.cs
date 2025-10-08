@@ -56,13 +56,11 @@ namespace BankingPaymentsApp_API.Controllers
             var doc = await _documentService.GetById(id);
             if (doc == null) return NotFound($"Document with ID {id} not found");
 
-            //var docDto = _mapper.Map<DocumentDTO>(doc);
             return Ok(doc);
         }
 
         // POST: api/Document
         [HttpPost]
-        [Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<ActionResult<DocumentDTO>> Add(DocumentDTO dto)
         {
             var document = _mapper.Map<Document>(dto);
@@ -119,10 +117,8 @@ namespace BankingPaymentsApp_API.Controllers
             return NoContent();
         }
 
-        // upload documents
         // POST: api/Document/upload/{id}
         [HttpPost("upload")]
-        [Authorize(Roles = $"{nameof(Role.ADMIN)},{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> UploadFile([FromForm] DocumentDTO dto, IFormFile file)
         {
             _logger.LogInformation("UploadDocument started!");

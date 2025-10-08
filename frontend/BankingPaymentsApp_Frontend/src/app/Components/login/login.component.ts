@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
   handleSuccess(token: string) {
     console.log("Captcha success:", token);
 
-    // Send login + token to backend
     this.authSvc.loginUser({
       ...this.loginForm.value,
       recaptchaToken: token
@@ -51,20 +50,18 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.authSvc.saveToken(data);
 
-        // Get role and userId from saved token
         const role = this.authSvc.getUserRole();
         const userId = this.authSvc.getUserId();
 
-        // Role-based navigation
         switch (role) {
           case "ADMIN":
-            this.router.navigate(['/adminHome']);
+            this.router.navigate(['/admin/home']);
             break;
           case "BANK_USER":
-            this.router.navigate(['/BankUserHome']);
+            this.router.navigate(['/bank/home']);
             break;
           case "CLIENT_USER":
-            this.router.navigate(['/home']); 
+            this.router.navigate(['/client/home']); 
             break;
           default:
             this.notify.error("Unknown role! Cannot navigate.");
@@ -92,7 +89,6 @@ export class LoginComponent implements OnInit {
 
   Login(loginForm: FormGroup) {
     if (this.loginForm.valid) {
-      // trigger invisible captcha check before login
       this.captchaElem.execute();
     } else {
       this.notify.error("Please enter username and password");

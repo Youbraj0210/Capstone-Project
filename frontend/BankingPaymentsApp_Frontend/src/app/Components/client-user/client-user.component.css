@@ -16,7 +16,7 @@ html, body {
 /* ---------------- Sidebar ---------------- */
 .dashboard-sidebar {
   width: 320px;
-  flex-shrink: 0;   /* Prevent shrinking */
+  flex-shrink: 0;   
   background: #1f1c2f;
   padding: 2rem 1rem;
   border-right: 1px solid #3c3a4a;
@@ -71,7 +71,7 @@ html, body {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background: transparent; /* keep dashboard background clean */
+  background: transparent; 
   padding: 0;
   gap: 1rem;
 }
@@ -142,7 +142,7 @@ html, body {
 
 /* ---------------- Active Sidebar Button ---------------- */
 .btn-dashboard.active-btn {
-  background: #7a5af8; /* Highlight color */
+  background: #7a5af8;
   color: #fff;
   transform: translateX(5px) scale(1.03);
   box-shadow: 0 5px 15px rgba(122, 90, 248, 0.6);

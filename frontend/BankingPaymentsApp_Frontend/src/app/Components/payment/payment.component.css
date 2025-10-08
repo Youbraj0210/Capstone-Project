@@ -35,7 +35,6 @@
     box-shadow: 0 6px 20px rgba(63, 54, 195, 0.5);
 }
 
-/* Remove default select arrow if you want an even cleaner look (optional) */
 select.modern-input {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -52,31 +51,26 @@ select.modern-input {
 .forms-wrapper {
     display: flex;
     gap: 2rem;
-    /* space between forms */
     align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* Make sure forms fill equally */
 .payment-form,
 .beneficiary-form-wrapper {
     min-width: 320px;
-    /* keep a minimum width */
     flex-basis: 45%;
-    /* about half container each */
 }
 
 .breadcrumb a {
   text-decoration: none;
-  color: inherit;   /* inherit text color */
+  color: inherit;  
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline; /* subtle hover effect */
+  text-decoration: underline; 
 }
 
-/* Responsive: stack on small screens */
 @media (max-width: 768px) {
     .forms-wrapper {
         flex-direction: column;

@@ -12,10 +12,6 @@ namespace BankingPaymentsApp_API.Repositories
             _dbContext = dBContext;
         }
 
-        //public async Task<IEnumerable<Account>> GetAll()
-        //{
-        //    return await _dbContext.Accounts.ToListAsync();
-        //}
         public IQueryable<Account> GetAll()
         {
             return _dbContext.Accounts.Include(a => a.ClientUser).Include(a => a.Bank).Include(a => a.AccountType).Include(a => a.AccountStatus).AsQueryable();
@@ -66,7 +62,6 @@ namespace BankingPaymentsApp_API.Repositories
             string prefix = "BPA";
             string datePart = DateTime.Now.ToString("yyyyMMdd");
 
-            // Generate random 6-character alphanumeric string
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
             string randomPart = new string(Enumerable.Repeat(chars, 6)
@@ -77,7 +72,6 @@ namespace BankingPaymentsApp_API.Repositories
             bool exists = await _dbContext.Accounts.AnyAsync(a => a.AccountNumber == accountNumber);
             if (exists)
             {
-                // Regenerate if already exists
                 return await GenerateAccountNumber();
             }
 

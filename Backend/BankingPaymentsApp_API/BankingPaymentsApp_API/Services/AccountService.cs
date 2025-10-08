@@ -18,11 +18,6 @@ namespace BankingPaymentsApp_API.Services
             _transactionRepository = transactionRepository;
             _emailService = emailService;
         }
-
-        //public async Task<IEnumerable<Account>> GetAll()
-        //{
-        //    return await _accountRepository.GetAll();
-        //}
         public async Task<PagedResultDTO<Account>> GetAll(
              string? accountNumber,
              int? clientId,

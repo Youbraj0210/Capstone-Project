@@ -1,8 +1,15 @@
 <div class="mt-4 px-3 w-100">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Salary Disbursements</li>
+            <li class="breadcrumb-item">
+                <a
+                    [routerLink]="role === 'CLIENT_USER' ? '/client/home' : role === 'BANK_USER' ? '/bank/home' : '/admin/home'">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Salary Disbursements
+            </li>
         </ol>
     </nav>
 
@@ -29,7 +36,7 @@
     <!-- Header with action -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold mb-0">ALL SALARY DISBURSEMENTS</h5>
-        <button *ngIf="role == 'CLIENT_USER'" class="btn btn-create-payment" routerLink="/employee">
+        <button *ngIf="role == 'CLIENT_USER'" class="btn btn-create-payment" routerLink="/client/employees">
             <i class="bi bi-plus-lg me-2"></i> Create Disbursement
         </button>
     </div>
@@ -95,7 +102,7 @@
                             <button *ngIf="disb.disbursementStatusId == 3 && role == 'BANK_USER'"
                                 class="btn btn-sm btn-outline-danger me-1" (click)="openFormModal(disb)">Reject</button>
                             <button class="btn btn-sm btn-outline-primary"
-                                [routerLink]="['/disbursements', disb.salaryDisbursementId]">View</button>
+                                [routerLink]="role === 'CLIENT_USER' ? ['/client/disbursements', disb.salaryDisbursementId] : ['/bank/disbursements', disb.salaryDisbursementId]">View</button>
                         </td>
                     </tr>
                 </tbody>

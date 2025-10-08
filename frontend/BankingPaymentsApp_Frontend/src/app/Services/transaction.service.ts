@@ -11,17 +11,16 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  // Get transactions with optional filters
   getTransactions(
     transactionId?: number,
     transactionTypeId?: number,
-    createdAt?: string  // ISO date string
+    createdAt?: string  
   ): Observable<any[]> {
     let params = new HttpParams();
 
     if (transactionId) params = params.set('transactionId', transactionId);
     if (transactionTypeId) params = params.set('transactionTypeId', transactionTypeId);
-    if (createdAt) params = params.set('date', createdAt); // match backend query param
+    if (createdAt) params = params.set('date', createdAt); 
 
     return this.http.get<any[]>(this.apiUrl, { params });
   }

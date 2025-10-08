@@ -2,7 +2,7 @@
 {
     public class CreatePaymentDTO
     {
-        public long Amount { get; set; } // in cents/paise
+        public long Amount { get; set; } 
         public int AccountId { get; set; }
     }
 }

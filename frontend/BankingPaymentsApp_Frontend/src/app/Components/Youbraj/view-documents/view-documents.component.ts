@@ -5,6 +5,7 @@ import { Document } from '../../../Models/Document';
 import { DocumentUploadService } from '../../../Services/document.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NotificationService } from '../../../Services/notification.service';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-view-documents',
@@ -21,12 +22,14 @@ export class ViewDocumentsComponent implements OnInit {
   pdfCount = 0;
   totalCount = 0;
   userId!: number;
+  role!:string | null;
 
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private documentSvc: DocumentUploadService,
-    private notify: NotificationService 
+    private notify: NotificationService ,
+    private auth:AuthService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,8 @@ export class ViewDocumentsComponent implements OnInit {
     console.log(idFromRoute);
     this.userId = idFromRoute ? +idFromRoute : 0;
     console.log(this.userId);
+    const role = this.auth.getUserRole();
+    this.role = role;
 
     if (this.userId) {
       this.loadDocuments();

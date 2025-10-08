@@ -3,8 +3,8 @@
   <!-- Breadcrumb -->
   <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-      <li class="breadcrumb-item"><a routerLink="/profile">Profile</a></li>
+      <li class="breadcrumb-item"><a routerLink="/client/home">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/client/profile">Profile</a></li>
       <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ol>
   </nav>
@@ -21,7 +21,7 @@
     <p class="mb-0">Loading user profile...</p>
   </div>
 
-  <!-- Form Card (same white panel look as table wrapper) -->
+  <!-- Form Card  -->
   <div *ngIf="!loading && profileForm" class="table-wrapper bg-white rounded shadow-sm p-3">
     <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="row g-3 needs-validation" novalidate>
 

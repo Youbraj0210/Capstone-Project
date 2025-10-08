@@ -109,7 +109,6 @@ export class ClientSalaryDisbursementComponent implements OnInit {
     this.salaryDisbursementSvc.createSalaryDisbursement(payload).subscribe({
       next: (res) => {
         this.notify.success('Salary disbursement created successfully!');
-        // optionally reset selection
         this.selectAll = false;
         this.selectedEmployees = [];
       },

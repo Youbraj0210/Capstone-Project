@@ -104,10 +104,10 @@
   position: fixed;       
   top: 0;               
   left: 0;      
-  right: 0;        /* ensure it starts from exact left */
+  right: 0;        
   z-index: 10000;        
-  width: 98.8%;          /* take full width */
+  width: 98.8%;        
   background: rgba(18, 16, 27, 0.95); 
-  margin: 0;            /* remove any extra spacing */
+  margin: 0;           
   padding: 0;  
 }

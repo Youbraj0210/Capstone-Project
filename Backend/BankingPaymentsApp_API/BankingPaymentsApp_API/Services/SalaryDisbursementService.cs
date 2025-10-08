@@ -90,9 +90,9 @@ namespace BankingPaymentsApp_API.Services
                 }
             }
 
-            SalaryDisbursement added =  await _salaryDisbursementRepository.Add(disbursement);
+            SalaryDisbursement added = await _salaryDisbursementRepository.Add(disbursement);
 
-            SalaryDisbursement salary =  await GetById(added.SalaryDisbursementId);
+            SalaryDisbursement salary = await GetById(added.SalaryDisbursementId);
 
             string subject = $"Disbursement Id ({salary.SalaryDisbursementId}) has been created Your Action awaits";
             string body =
@@ -113,97 +113,6 @@ namespace BankingPaymentsApp_API.Services
             await _salaryDisbursementRepository.DeleteById(id);
         }
 
-        //public async Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId)
-        //{
-        //    var transaction = await _dbContext.Database.BeginTransactionAsync();
-        //    try
-        //    {
-        //        SalaryDisbursement? salaryDisbursement = await _salaryDisbursementRepository.GetById(disbursementId);
-
-        //        if (salaryDisbursement == null) throw new NullReferenceException("did not find this salary disbursement!");
-
-        //        int ClientAccountId = salaryDisbursement.ClientUser.Account.AccountId;
-        //        Account? ClientAccount = await _accountService.GetById(ClientAccountId);
-        //        if (ClientAccount.Balance < (double)salaryDisbursement.TotalAmount)
-        //        {
-        //            salaryDisbursement.DisbursementStatusId = 2;
-        //            throw new Exception("insufficient Balance!");
-        //        }
-        //        //ClientAccount.Balance -= (double)salaryDisbursement.TotalAmount;
-
-        //        //await _accountService.Update(ClientAccount);
-        //        await _accountService.DebitAccount(ClientAccountId, (double)salaryDisbursement.TotalAmount);
-
-        //        var details = new List<SalaryDisbursementDetails>();
-        //        foreach (Employee emp in salaryDisbursement.Employees)
-        //        {
-        //            SalaryDisbursementDetails detail = new SalaryDisbursementDetails
-        //            {
-        //                SalaryDisbursementId = salaryDisbursement.SalaryDisbursementId,
-        //                EmployeeId = emp.EmployeeId,
-        //                Amount = emp.Salary
-        //            };
-
-        //            Account? employeeAccount = await _accountService.AccountExistsWithAccountNumber(emp.AccountNumber);
-        //            if (employeeAccount != null)
-        //            {
-        //                employeeAccount.Balance += emp.Salary;
-        //                Transaction creditTransaction = new Transaction
-        //                {
-        //                    TransactionTypeId = 1,
-        //                    AccountId = employeeAccount.AccountId,
-        //                    CreatedAt = DateTime.UtcNow,
-        //                    Amount = emp.Salary,
-        //                    SalaryDisbursementId = disbursementId
-        //                };
-        //                Transaction addedTransacation = await _transactionRepository.Add(creditTransaction);
-        //                detail.TransactionId = addedTransacation.TransactionId;
-        //                await _accountService.Update(employeeAccount);
-
-        //                string subject1 = $"Your Salary Has Been Credited";
-        //                string body1 =
-        //                    $"""
-        //                    Your Account ({ClientAccount.AccountNumber}) is Credited with Rs {emp.Salary}; 
-        //                    """;
-        //                await _emailService.SendEmailToClientAsync((int)employeeAccount.ClientId, subject1, body1);
-        //            }
-
-        //            SalaryDisbursementDetails addedDetail = await _salaryDisbursementDetailsRepository.Add(detail);
-        //            details.Add(addedDetail);
-        //        }
-
-        //        salaryDisbursement.DisbursementDetails = details;
-        //        salaryDisbursement.DisbursementStatusId = 1;
-
-        //        Transaction debitTransaction = new Transaction
-        //        {
-        //            TransactionTypeId = 2,
-        //            AccountId = ClientAccount.AccountId,
-        //            CreatedAt = DateTime.UtcNow,
-        //            Amount = (double)salaryDisbursement.TotalAmount,
-        //            SalaryDisbursementId = disbursementId
-        //        };
-        //        Transaction addDebTransacation = await _transactionRepository.Add(debitTransaction);
-        //        ClientAccount.TransactionIds.Add(addDebTransacation.TransactionId);
-
-        //        SalaryDisbursement? updatedDisbursement = await _salaryDisbursementRepository.Update(salaryDisbursement);
-        //        await transaction.CommitAsync();
-        //        string subject = $"Your SalaryDisbursement ID {disbursementId} is Approved!";
-        //        string body =
-        //            $"""
-        //            Your SalaryDisbursement ({disbursementId}) has been approved at {DateTime.UtcNow}
-        //            Your Account ({ClientAccount.AccountNumber}) is Debited with Rs {salaryDisbursement.TotalAmount} 
-        //            """;
-        //        await _emailService.SendEmailToClientAsync((int)salaryDisbursement.ClientId, subject, body);
-        //        return updatedDisbursement;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await transaction.RollbackAsync();
-        //        throw;
-        //    }
-        //}
 
         public async Task<SalaryDisbursement> ApproveSalaryDisbursement(int disbursementId)
         {
@@ -229,27 +138,33 @@ namespace BankingPaymentsApp_API.Services
                 {
 
                     Account? employeeAccount = await _accountService.AccountExistsWithAccountNumber(emp.AccountNumber);
-                    if (employeeAccount != null)
+                    if (emp.Salary > 0 && emp.Salary < 100000)
                     {
-                        Transaction debitTransaction = await _accountService.DebitAccount(ClientAccountId, (double)emp.Salary, paymentId: null, disbursementId: disbursementId,employeeAccount.AccountNumber);
+                        Transaction debitTransaction = await _accountService.DebitAccount(ClientAccountId, (double)emp.Salary, paymentId: null, disbursementId: disbursementId, emp.AccountNumber);
                         totalDebited += (double)emp.Salary;
-
-                        Transaction creditTransaction = await _accountService.CreditAccount(employeeAccount.AccountId, emp.Salary, paymentId: null, disbursementId: disbursementId,ClientAccount.AccountNumber);
+                        if (employeeAccount != null)
+                        {
+                            Transaction creditTransaction = await _accountService.CreditAccount(employeeAccount.AccountId, emp.Salary, paymentId: null, disbursementId: disbursementId, ClientAccount.AccountNumber);
+                        }
                         SalaryDisbursementDetails detail = new SalaryDisbursementDetails
                         {
                             SalaryDisbursementId = salaryDisbursement.SalaryDisbursementId,
                             EmployeeId = emp.EmployeeId,
                             Amount = emp.Salary,
                             Success = true,
-                            TransactionId = creditTransaction.TransactionId
+                            TransactionId = debitTransaction.TransactionId
                         };
 
                         SalaryDisbursementDetails addedDetail = await _salaryDisbursementDetailsRepository.Add(detail);
                         processedDetails.Add(addedDetail);
 
-                        string subject = $"Salary Credited for Employee {emp.EmployeeId}";
-                        string body = $"Your account ({employeeAccount.AccountNumber}) has been credited with Rs {emp.Salary}.";
-                        await _emailService.SendEmailToClientAsync((int)employeeAccount.ClientId, subject, body);
+                        if (employeeAccount != null)
+                        {
+                            string subject = $"Salary Credited for Employee {emp.EmployeeId}";
+                            string body = $"Your account ({employeeAccount.AccountNumber}) has been credited with Rs {emp.Salary}.";
+                            await _emailService.SendEmailToClientAsync((int)employeeAccount.ClientId, subject, body);
+                        }
+
                     }
                     else
                     {

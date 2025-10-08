@@ -54,22 +54,14 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get userId from route params
-    // this.clientId = Number(this.route.snapshot.paramMap.get('userId')) || 0;
     this.clientId = this.auth.getUserId() ?? 0;
 
-    // if (!this.clientId) {
-    //   alert('Client ID missing! Redirecting to login.');
-    //   this.router.navigate(['/login']);
-    // }
   }
 
-  // Helper to get a FormGroup for each document
   getFormGroup(docField: string): FormGroup {
     return this.uploadForm.get(docField) as FormGroup;
   }
 
-  // Handle file selection
   onFileSelected(event: any, docField: string) {
     const file = event.target.files[0];
     if (file) {
@@ -92,7 +84,6 @@ export class DocumentUploadComponent implements OnInit {
   }
 
 
-  // Upload all documents at once
   uploadAllDocuments() {
     if (this.documentFields.some(doc => this.getFormGroup(doc).invalid)) {
       this.notify.error('Please fill all fields and select files for all documents.');
@@ -111,7 +102,6 @@ export class DocumentUploadComponent implements OnInit {
       return this.docService.uploadDocument(dto, file);
     });
 
-    // Upload all documents in parallel
     Promise.all(uploadObservables.map(obs => obs.toPromise()))
       .then(() => {
         this.notify.success('All documents uploaded successfully!');
@@ -122,15 +112,6 @@ export class DocumentUploadComponent implements OnInit {
         this.notify.error('One or more document uploads failed.');
       });
   }
-
-  // Ensure these are present in your component.ts
-
-  // Example structure assumptions:
-  // uploadForm: FormGroup;
-  // documentFields: string[] = ['Address Proof', 'ID Proof', 'Photo']; // example
-  // proofTypes: { TypeId: number; Type: string }[] = [];
-  // previewUrls: Record<string, string> = {};
-
 
   resetDoc(doc: string) {
     const fg = this.getFormGroup(doc);

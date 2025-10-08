@@ -47,15 +47,6 @@ namespace BankingPaymentsApp_API.Controllers
             if (regUser.Password != regUser.ConfirmPassword)
                 return BadRequest("Password and Confirm Password should Match!");
 
-            //User newUser = new User
-            //{
-            //    UserFullName = regUser.UserName,
-            //    UserName = regUser.UserName,
-            //    UserEmail = regUser.UserEmail,
-            //    UserPhone = regUser.UserPhone,
-            //    Password = regUser.Password,
-            //    UserRoleId = regUser.UserRoleId
-            //};
             User newUser = _mapper.Map<User>(regUser);
             User addedUser = await _service.Add(newUser);
 

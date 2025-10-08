@@ -19,7 +19,7 @@ export class BankUserComponent implements OnInit {
 
   clients: ClientUser[] = [];
   selectedClientDocs: Document[] = [];
-  selectedClient: ClientUser | null = null; // <-- Added
+  selectedClient: ClientUser | null = null; 
   showDocuments: boolean = false;
   loading: boolean = true;
   responseMessage: string | null = null;
@@ -73,7 +73,7 @@ export class BankUserComponent implements OnInit {
     }
 
     this.resetDocuments();
-    this.selectedClient = client; // <-- Set selected client
+    this.selectedClient = client; 
     this.responseMessage = null;
 
     this.bankService.getClientDocuments(client.userId).subscribe({
@@ -131,6 +131,6 @@ export class BankUserComponent implements OnInit {
   private resetDocuments() {
     this.selectedClientDocs = [];
     this.showDocuments = false;
-    this.selectedClient = null; // <-- Reset selected client
+    this.selectedClient = null; 
   }
 }

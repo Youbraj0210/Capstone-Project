@@ -25,11 +25,13 @@ export class PaymentComponent implements OnInit {
   displayBeneficiaryForm!: boolean;
 
   beneficiaries!: Beneficiary[];
+  role!:string | null;
 
 
   constructor(private router:Router,private fb: FormBuilder, private notify: NotificationService , private paymentSvc: PaymentService, private auth: AuthService, private clientSvc: ClientRegisterService) { }
 
   ngOnInit(): void {
+    this.role = this.auth.getUserRole();
 
     this.createPayment = this.fb.group({
       payerAccountId: 0,
@@ -63,7 +65,7 @@ export class PaymentComponent implements OnInit {
       console.log(data);
       this.paymentCreated = true;
       this.notify.success(`Payment to ${data.payeeAccountNumber} sucessfully created!`);
-      this.router.navigate(["/payments"])
+      this.router.navigate(["/common/payments"])
 
     },
       (error) => {

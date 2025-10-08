@@ -4,17 +4,18 @@ import { LogService } from '../../Services/log.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DateFilterComponent } from '../Filters/date-filter/date-filter.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-logs',
   standalone: true,
-  imports: [CommonModule, FormsModule, DateFilterComponent],
+  imports: [CommonModule, FormsModule, DateFilterComponent,RouterLink],
   templateUrl: './admin-logs.component.html',
   styleUrls: ['./admin-logs.component.css']
 })
 export class AdminLogsComponent implements OnInit {
   logs: any[] = [];
-  allLogs: any[] = []; // Keep the original list
+  allLogs: any[] = []; 
   loading = true;
   pageNumber = 1;
   pageSize = 5;
@@ -57,7 +58,6 @@ export class AdminLogsComponent implements OnInit {
 
   onDateFilter(dates: { dateFrom: string; dateTo: string }) {
     if (!dates.dateFrom && !dates.dateTo) {
-      // Reset filter if both dates are empty
       this.logs = [...this.allLogs];
       return;
     }
@@ -83,12 +83,10 @@ export class AdminLogsComponent implements OnInit {
     this.pageNumber = page;
     this.fetchLogs();
   }
-  // Add this inside the component class
   get totalPages(): number {
     return Math.ceil(this.totalRecords / this.pageSize);
   }
 
-  // Also for generating page numbers
   get pages(): number[] {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
   }

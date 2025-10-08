@@ -31,6 +31,7 @@ export class ListClientsComponent implements OnInit {
   approved!: number;
   pending!: number;
   deleted!:number;
+  role!:string | null;
 
   @ViewChild("rejectModal") formModal!: RejectModalComponent;
 
@@ -44,6 +45,7 @@ export class ListClientsComponent implements OnInit {
 
   ngOnInit(): void {
     let userId = this.auth.getUserId();
+    this.role = this.auth.getUserRole();
     this.filters.BankUserId = userId;
     const params = new URLSearchParams(this.filters).toString();
     this.fetchAllClients(params);

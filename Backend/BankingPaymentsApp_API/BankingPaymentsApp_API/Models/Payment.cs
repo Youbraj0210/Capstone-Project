@@ -12,9 +12,7 @@ namespace BankingPaymentsApp_API.Models
         public virtual Account? PayerAccount {  get; set; }
         [Required(ErrorMessage = "Payee Account Number is Required")]
         public string PayeeAccountNumber {  get; set; }
-        //[ForeignKey("PayeeAccount")]
-        //public int PayeeAccountId {  get; set; }
-        //public virtual Account? PayeeAccount { get; set; }
+
         [Required(ErrorMessage = "Amount is Required!")]
         [DataType(DataType.Currency)]
         public double Amount {  get; set; }

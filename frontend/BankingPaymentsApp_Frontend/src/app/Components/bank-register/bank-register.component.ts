@@ -33,7 +33,6 @@ export class BankRegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // simulate loading finish
     this.loading = false;
   }
 
@@ -47,7 +46,7 @@ export class BankRegisterComponent implements OnInit {
         this.bankDto = { bankName: '', ifsc: '' }; 
         this.notify.success("Bank has been registered successfully");
 
-        this.loading = false; // hide spinner
+        this.loading = false; 
         this.router.navigate(['/banks']); 
       },
       error: () => {

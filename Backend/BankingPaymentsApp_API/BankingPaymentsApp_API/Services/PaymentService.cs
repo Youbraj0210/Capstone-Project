@@ -201,7 +201,6 @@ namespace BankingPaymentsApp_API.Services
                     """;
                 await _emailService.SendEmailToClientAsync((int)payerAccount.ClientId, subject, body);
 
-                // commiting
                 await dbTransaction.CommitAsync();
                 return updatedPayment;
             }
@@ -210,7 +209,6 @@ namespace BankingPaymentsApp_API.Services
                 await dbTransaction.RollbackAsync();
                 return null;
             }
-            //return null;
         }
 
 

@@ -1,7 +1,15 @@
 <div class="mt-4 px-3 w-100">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item">
+                <a [routerLink]="
+                    role === 'CLIENT_USER' ? '/client/home' : 
+                    role === 'BANK_USER' ? '/bank/home' : 
+                    '/admin/home'
+                    ">
+                    Home
+                </a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Clients</li>
         </ol>
     </nav>
@@ -70,8 +78,10 @@
                         </span>
                     </td>
                     <td>
-                        <a [routerLink]="['documents',client.userId]"
-                            class="btn btn-sm btn-outline-success text-dark p-1">
+                        <a [routerLink]="
+                            role === 'BANK_USER' ? ['/bank/clients/documents', client.userId] :
+                            ['/admin/clients/documents', client.userId]
+                            " class="btn btn-sm btn-outline-success text-dark p-1">
                             View Documents
                         </a>
                     </td>
@@ -85,4 +95,4 @@
     </div>
 </div>
 <app-reject-modal #rejectModal [Parentid]="selectedClient?.id"
-  (formSubmit)="handleFormSubmit($event)"></app-reject-modal>
+    (formSubmit)="handleFormSubmit($event)"></app-reject-modal>

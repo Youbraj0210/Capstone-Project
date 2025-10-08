@@ -63,7 +63,6 @@ namespace BankingPaymentsApp_API.Controllers
             if (clientUser == null)
                 return NotFound($"No Client User found with id: {id}");
 
-            //var response = _mapper.Map<ClientUserResponseDTO>(clientUser);
             _logger.LogInformation("Client user was Dispalyed");
 
             return Ok(clientUser);
@@ -93,7 +92,7 @@ namespace BankingPaymentsApp_API.Controllers
                 _logger.LogInformation("Creation Successful!");
                 return Ok(response);
             }
-            catch (InvalidOperationException ex)  // Handle duplicate email/phone
+            catch (InvalidOperationException ex)  
             {
                 return BadRequest(ex.Message);
             }
@@ -136,7 +135,6 @@ namespace BankingPaymentsApp_API.Controllers
 
         // DELETE: api/ClientUser/{id}
         [HttpDelete("{id}")]
-        //[Authorize(Roles = $"{nameof(Role.CLIENT_USER)},{nameof(Role.BANK_USER)}")]
         public async Task<IActionResult> DeleteClientUserById(int id)
         {
             _logger.LogInformation("DeleteClientUserById started!");

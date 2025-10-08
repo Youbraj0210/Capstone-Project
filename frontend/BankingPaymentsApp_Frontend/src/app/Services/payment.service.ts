@@ -38,7 +38,7 @@ export class PaymentService {
     return this.http.put<string>(
       this.paymentURL + `/reject/${rejectResponse.id}`,
       rejectResponse,
-      { responseType: 'text' as 'json' } // type assertion needed
+      { responseType: 'text' as 'json' } 
     );
   }
 
