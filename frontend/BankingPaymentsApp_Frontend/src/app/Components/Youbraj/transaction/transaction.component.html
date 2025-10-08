@@ -19,7 +19,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold mb-0">ALL TRANSACTIONS</h5>
-        <button class="btn btn-create-payment" routerLink="/transaction/create">
+        <button *ngIf="role=='CLIENT_USER'" class="btn btn-create-payment" routerLink="/transaction/create">
             <i class="bi bi-plus-lg me-2"></i> Create Transaction
         </button>
     </div>
