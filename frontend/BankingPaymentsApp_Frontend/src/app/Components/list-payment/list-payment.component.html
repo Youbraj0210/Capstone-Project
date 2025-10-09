@@ -73,7 +73,7 @@
             <td class="text-truncate" style="max-width: 140px;">
               {{ payment.payerAccount?.accountNumber }}
             </td>
-            <td class="text-truncate">{{ payment.amount | currency }}</td>
+            <td class="text-truncate">{{ payment.amount | currency:'INR':'symbol'}}</td>
             <td class="text-truncate" style="max-width: 160px;">
               {{ payment.payeeAccountNumber }}
             </td>

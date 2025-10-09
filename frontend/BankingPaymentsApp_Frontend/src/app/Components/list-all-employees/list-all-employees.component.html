@@ -66,7 +66,7 @@
             <td class="text-truncate" style="max-width: 120px;">
               {{ employee.ifsc }}
             </td>
-            <td class="text-truncate">{{ employee.salary | currency }}</td>
+            <td class="text-truncate">{{ employee.salary | currency:'INR':'symbol' }}</td>
             <td class="text-truncate" style="max-width: 160px;">
               {{ employee.clientUser?.userName }}
             </td>

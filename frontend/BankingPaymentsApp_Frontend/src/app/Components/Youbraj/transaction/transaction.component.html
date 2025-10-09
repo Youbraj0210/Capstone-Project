@@ -79,7 +79,7 @@
                                 {{ txn.transactionTypeId | transactionType }}
                             </span>
                         </td>
-                        <td class="text-truncate">{{ txn.amount | currency }}</td>
+                       <td class="text-truncate">{{ txn.amount | currency:'INR':'symbol' }}</td>
                         <td class="text-truncate" style="max-width: 140px;">
                             {{ txn.createdAt | date:'dd-MMM, h:mm a' }}
                         </td>
